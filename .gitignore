@@ -1,0 +1,14 @@
+# System and OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp & Scratch Files
+scratch/
+.system_generated/
+*.log
+*.tmp
+
+# Vercel & Node
+.vercel/
+node_modules/

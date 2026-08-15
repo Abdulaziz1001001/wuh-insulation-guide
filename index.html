@@ -1,0 +1,3110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الدليل الإرشادي لقسم العزل | انطلق بقوة - Wheels Up Holding</title>
+  <meta name="description" content="الدليل الإرشادي الشامل لسير الأعمال بمشاريع العزل - شركة انطلق بقوة القابضة WUH. يتضمن مراحل العمل والمخططات الهندسية وملفات MOS التفصيلية.">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&family=Noto+Kufi+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== CSS RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Brand Colors from DESIGN.md */
+      --deep-navy: #0A192F;
+      --deep-navy-dark: #060D1A;
+      --safety-orange: #FF6B00;
+      --safety-orange-hover: #E85E00;
+      --slate-blue: #3A4750;
+      --steel-gray: #E0E0E0;
+      --surface-white: #FFFFFF;
+      --surface-off-white: #F8F9FA;
+      --surface-container: #EEEEEE;
+      --on-surface: #1A1C1C;
+      --on-surface-variant: #44474D;
+      --outline: #75777E;
+      --outline-variant: #C5C6CD;
+      --error: #BA1A1A;
+      --brand-navy-rgb: 10, 25, 47;
+
+      /* Typography */
+      --font-primary: 'Cairo', 'Noto Kufi Arabic', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-inter: 'Inter', sans-serif;
+
+      /* Spacing */
+      --unit: 8px;
+      --container-max: 1280px;
+      --gutter: 24px;
+      --sidebar-width: 280px;
+
+      /* Shadows */
+      --shadow-sm: 0px 2px 8px rgba(var(--brand-navy-rgb), 0.06);
+      --shadow-md: 0px 4px 12px rgba(var(--brand-navy-rgb), 0.08);
+      --shadow-lg: 0px 8px 24px rgba(var(--brand-navy-rgb), 0.12);
+      --shadow-hover: 0px 12px 32px rgba(var(--brand-navy-rgb), 0.16);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-primary);
+      color: var(--on-surface);
+      background: var(--surface-off-white);
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ===== BLUEPRINT GRID BACKGROUND ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(var(--brand-navy-rgb), 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--brand-navy-rgb), 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--surface-off-white); }
+    ::-webkit-scrollbar-thumb { background: var(--slate-blue); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--deep-navy); }
+
+    /* ===== UTILITY CLASSES ===== */
+    .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--gutter); }
+    .text-orange { color: var(--safety-orange); }
+    .text-navy { color: var(--deep-navy); }
+    .text-slate { color: var(--slate-blue); }
+    .mono { font-family: var(--font-mono); }
+    .inter { font-family: var(--font-inter); }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--safety-orange);
+      margin-bottom: calc(var(--unit) * 2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--safety-orange);
+    }
+
+    .section-title {
+      font-family: var(--font-primary);
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--deep-navy);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin-bottom: calc(var(--unit) * 2);
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--on-surface-variant);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    /* ===== SIDEBAR NAVIGATION ===== */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--deep-navy);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-logo {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      border-radius: 0;
+    }
+
+    .sidebar-brand {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .sidebar-brand small {
+      display: block;
+      font-family: var(--font-inter);
+      font-weight: 400;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 0;
+      list-style: none;
+    }
+
+    .sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      border-right: 3px solid transparent;
+      position: relative;
+    }
+
+    .sidebar-nav li a:hover,
+    .sidebar-nav li a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+      border-right-color: var(--safety-orange);
+    }
+
+    .sidebar-nav li a .nav-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+    .sidebar-nav li a:hover .nav-icon,
+    .sidebar-nav li a.active .nav-icon { opacity: 1; }
+
+    .sidebar-nav li a .nav-badge {
+      margin-right: auto;
+      margin-left: 0;
+      background: var(--safety-orange);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sidebar-footer .btn-print {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-primary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .sidebar-footer .btn-print::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 100%;
+      background: var(--safety-orange);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+    .sidebar-footer .btn-print:hover::before { width: 100%; }
+    .sidebar-footer .btn-print:hover { color: #fff; border-color: var(--safety-orange); }
+    .sidebar-footer .btn-print span,
+    .sidebar-footer .btn-print svg { position: relative; z-index: 1; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      margin-right: var(--sidebar-width);
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    /* ===== MOBILE MENU TOGGLE ===== */
+    .mobile-toggle {
+      display: none;
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1100;
+      width: 48px;
+      height: 48px;
+      background: var(--deep-navy);
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      box-shadow: var(--shadow-lg);
+    }
+    .mobile-toggle span {
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: var(--deep-navy);
+      color: #fff;
+      padding: 70px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--safety-orange) 0px,
+        var(--safety-orange) 20px,
+        var(--deep-navy) 20px,
+        var(--deep-navy) 40px
+      );
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+
+    .hero-company {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-company strong {
+      display: block;
+      font-size: 20px;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .hero-module-id {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--safety-orange);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-module-id::before {
+      content: '';
+      width: 32px;
+      height: 2px;
+      background: var(--safety-orange);
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      font-size: 15.5px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero Visual Showcase */
+    .hero-visual-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      overflow: visible; /* Prevent tooltip clipping */
+      transition: all 0.3s ease;
+    }
+    .hero-visual-card:hover {
+      border-color: var(--safety-orange);
+    }
+
+    .hero-visual-header {
+      background: #060D1A;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-visual-tag {
+      font-family: var(--font-primary);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--safety-orange);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-visual-tag .tag-code {
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+    }
+    .hero-visual-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--safety-orange);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .hero-visual-code {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-visual-img-wrap {
+      position: relative;
+      cursor: pointer;
+      overflow: visible;
+      background: #060D1A;
+    }
+
+    .hero-visual-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Interactive Hotspot Pins */
+    .hotspot-pin {
+      position: absolute;
+      transform: translate(50%, -50%);
+      z-index: 25;
+      cursor: pointer;
+    }
+
+    /* CRITICAL: Active / Hovered Pin Sits Above All Other Pins */
+    .hotspot-pin:hover,
+    .hotspot-pin:focus,
+    .hotspot-pin:focus-within {
+      z-index: 300 !important;
+    }
+
+    .hotspot-dot {
+      width: 30px;
+      height: 30px;
+      background: var(--safety-orange);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.7);
+      animation: pulse-orange 2s infinite;
+      transition: transform 0.2s ease, background 0.2s ease;
+      border: 2px solid #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hotspot-pin:hover .hotspot-dot {
+      transform: scale(1.15);
+      background: #fff;
+      color: var(--deep-navy);
+      border-color: var(--safety-orange);
+    }
+
+    @keyframes pulse-orange {
+      0% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.7); }
+      70% { box-shadow: 0 0 0 14px rgba(255, 107, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0); }
+    }
+
+    /* Base Tooltip (Opens Upwards) */
+    .hotspot-tooltip {
+      position: absolute;
+      bottom: calc(100% + 14px);
+      right: 50%;
+      transform: translateX(50%) translateY(8px);
+      background: #060D1A;
+      border: 1.5px solid var(--safety-orange);
+      padding: 14px 16px;
+      width: 275px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.95), 0 0 25px rgba(255, 107, 0, 0.3);
+      z-index: 350;
+      text-align: right;
+      font-family: var(--font-primary);
+    }
+
+    .hotspot-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 50%;
+      transform: translateX(50%);
+      border: 6px solid transparent;
+      border-top-color: var(--safety-orange);
+    }
+
+    .hotspot-pin:hover .hotspot-tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(50%) translateY(0);
+    }
+
+    /* Downward Tooltip for Top Pins (Pin 01) */
+    .hotspot-pin.pin-tip-bottom .hotspot-tooltip {
+      bottom: auto;
+      top: calc(100% + 14px);
+      transform: translateX(50%) translateY(-8px);
+    }
+
+    .hotspot-pin.pin-tip-bottom .hotspot-tooltip::after {
+      top: auto;
+      bottom: 100%;
+      border-top-color: transparent;
+      border-bottom-color: var(--safety-orange);
+    }
+
+    .hotspot-pin.pin-tip-bottom:hover .hotspot-tooltip {
+      transform: translateX(50%) translateY(0);
+    }
+
+    /* Left-Shifted Tooltip for Left Pins (Pin 05) */
+    .hotspot-pin.pin-tip-left .hotspot-tooltip {
+      right: auto;
+      left: -20px;
+      transform: translateY(8px);
+    }
+
+    .hotspot-pin.pin-tip-left .hotspot-tooltip::after {
+      right: auto;
+      left: 28px;
+      transform: none;
+    }
+
+    .hotspot-pin.pin-tip-left:hover .hotspot-tooltip {
+      transform: translateY(0);
+    }
+
+    .hotspot-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--safety-orange);
+      display: block;
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .hotspot-title {
+      font-family: var(--font-primary);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 5px;
+      line-height: 1.35;
+    }
+
+    .hotspot-desc {
+      font-family: var(--font-primary);
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .hotspot-btn {
+      font-family: var(--font-primary);
+      font-size: 11px;
+      color: var(--safety-orange);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Hero Legend Footer - 2x2 Architectural Grid */
+    .hero-visual-footer {
+      background: #060D1A;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 10px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-legend-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .hero-legend-card:hover {
+      background: rgba(255, 107, 0, 0.12);
+      border-color: var(--safety-orange);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+
+    .legend-badge {
+      width: 26px;
+      height: 26px;
+      background: rgba(255, 107, 0, 0.15);
+      border: 1px solid var(--safety-orange);
+      color: var(--safety-orange);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .hero-legend-card:hover .legend-badge {
+      background: var(--safety-orange);
+      color: #fff;
+    }
+
+    .legend-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .legend-title {
+      font-family: var(--font-primary);
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .legend-sub {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.03em;
+    }
+
+    .legend-arrow {
+      width: 14px;
+      height: 14px;
+      color: rgba(255, 255, 255, 0.35);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .hero-legend-card:hover .legend-arrow {
+      color: var(--safety-orange);
+      transform: translateX(-3px);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+    .btn span, .btn svg { position: relative; z-index: 1; }
+
+    .btn-primary {
+      background: var(--safety-orange);
+      color: #fff;
+    }
+    .btn-primary::before { background: var(--safety-orange-hover); }
+    .btn-primary:hover::before { width: 100%; }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline::before { background: rgba(255,255,255,0.1); }
+    .btn-outline:hover::before { width: 100%; }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+    /* ===== STATS SECTION ===== */
+    .stats {
+      padding: 0;
+      position: relative;
+      z-index: 2;
+      margin-top: -36px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: var(--surface-white);
+      border: 1px solid var(--steel-gray);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-item {
+      padding: 28px 20px;
+      text-align: center;
+      border-left: 1px solid var(--steel-gray);
+      position: relative;
+    }
+    .stat-item:last-child { border-left: none; }
+
+    .stat-item::before {
+      content: attr(data-module);
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--outline);
+      text-transform: uppercase;
+    }
+
+    .stat-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 10px;
+      color: var(--safety-orange);
+    }
+
+    .stat-number {
+      font-family: var(--font-inter);
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--deep-navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+    }
+
+    /* ===== PHASES SECTION ===== */
+    .phases {
+      padding: 80px 0;
+    }
+
+    .phases-header {
+      margin-bottom: 48px;
+    }
+
+    .phase-timeline {
+      position: relative;
+    }
+
+    .phase-timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 24px;
+      width: 3px;
+      height: 100%;
+      background: var(--steel-gray);
+    }
+
+    .phase-card {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+      position: relative;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .phase-card.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .phase-marker {
+      flex-shrink: 0;
+      width: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-number {
+      width: 48px;
+      height: 48px;
+      background: var(--deep-navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .phase-card.active .phase-number {
+      background: var(--safety-orange);
+    }
+
+    .phase-body {
+      flex: 1;
+      background: var(--surface-white);
+      border: 1px solid var(--steel-gray);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    .phase-body:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+
+    .phase-module-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--outline);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .phase-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--deep-navy);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .phase-title .phase-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--safety-orange);
+    }
+
+    .phase-meta {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .phase-meta-item {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .phase-meta-item svg { width: 16px; height: 16px; color: var(--safety-orange); }
+
+    .phase-desc {
+      font-size: 15px;
+      color: var(--on-surface-variant);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .phase-tasks {
+      list-style: none;
+      padding: 0;
+    }
+
+    .phase-tasks li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--surface-container);
+      font-size: 14px;
+      color: var(--on-surface);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.7;
+    }
+    .phase-tasks li:last-child { border-bottom: none; }
+
+    .phase-tasks li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--safety-orange);
+      flex-shrink: 0;
+      margin-top: 8px;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+
+    /* ===== HAZARD PROGRESS BAR ===== */
+    .hazard-bar {
+      height: 6px;
+      background: var(--steel-gray);
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hazard-bar-fill {
+      height: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--safety-orange) 0px,
+        var(--safety-orange) 8px,
+        #E85E00 8px,
+        #E85E00 16px
+      );
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===== MOS SECTION ===== */
+    .mos-section {
+      padding: 80px 0;
+      background: var(--surface-white);
+      position: relative;
+    }
+
+    .mos-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--safety-orange) 0px,
+        var(--safety-orange) 20px,
+        var(--surface-white) 20px,
+        var(--surface-white) 40px
+      );
+    }
+
+    .mos-header {
+      margin-bottom: 40px;
+    }
+
+    .mos-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mos-item {
+      border: 1px solid var(--steel-gray);
+      margin-bottom: -1px;
+      background: var(--surface-white);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+    }
+    .mos-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mos-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-primary);
+      text-align: right;
+      transition: background 0.2s ease;
+    }
+    .mos-trigger:hover { background: var(--surface-off-white); }
+
+    .mos-trigger-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--deep-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mos-trigger-icon svg { width: 24px; height: 24px; color: var(--safety-orange); }
+
+    .mos-trigger-text {
+      flex: 1;
+    }
+
+    .mos-trigger-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--safety-orange);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .mos-trigger-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--deep-navy);
+    }
+
+    .mos-trigger-arrow {
+      width: 24px;
+      height: 24px;
+      color: var(--outline);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .mos-item.open .mos-trigger-arrow {
+      transform: rotate(180deg);
+    }
+
+    .mos-item.open .mos-trigger {
+      background: var(--deep-navy);
+    }
+    .mos-item.open .mos-trigger-title { color: #fff; }
+    .mos-item.open .mos-trigger-arrow { color: var(--safety-orange); }
+
+    .mos-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mos-content-inner {
+      padding: 28px;
+      border-top: 1px solid var(--steel-gray);
+    }
+
+    /* MOS Visual Diagram Box */
+    .mos-diagram-box {
+      margin-bottom: 28px;
+      border: 1px solid var(--steel-gray);
+      background: #0A192F;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mos-diagram-header {
+      background: #060D1A;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .mos-diagram-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--safety-orange);
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mos-diagram-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--safety-orange);
+    }
+
+    .mos-diagram-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .mos-diagram-body {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .mos-diagram-img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: contain;
+      display: block;
+      background: #000;
+      transition: transform 0.3s ease;
+    }
+    .mos-diagram-body:hover .mos-diagram-img {
+      transform: scale(1.015);
+    }
+
+    .mos-diagram-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 25, 47, 0.45);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mos-diagram-body:hover .mos-diagram-overlay {
+      opacity: 1;
+    }
+
+    .mos-diagram-overlay-btn {
+      background: var(--safety-orange);
+      color: #fff;
+      font-family: var(--font-primary);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* MOS Form Fields */
+    .mos-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding: 20px;
+      background: var(--surface-off-white);
+      border: 1px solid var(--surface-container);
+    }
+
+    .mos-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mos-field-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--outline);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .mos-field-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--on-surface);
+      padding: 8px 0;
+      border-bottom: 2px solid var(--slate-blue);
+      min-height: 36px;
+    }
+
+    /* MOS Steps */
+    .mos-steps-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mos-steps-title svg { width: 20px; height: 20px; color: var(--safety-orange); }
+
+    .mos-steps {
+      list-style: none;
+      padding: 0;
+      counter-reset: mos-step;
+    }
+
+    .mos-steps li {
+      counter-increment: mos-step;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--surface-container);
+      font-size: 15px;
+      color: var(--on-surface);
+      line-height: 1.7;
+    }
+    .mos-steps li:last-child { border-bottom: none; }
+
+    .mos-steps li::before {
+      content: counter(mos-step, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--safety-orange);
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 107, 0, 0.08);
+      margin-top: 2px;
+    }
+
+    /* ===== RESPONSIBILITIES TABLE ===== */
+    .responsibilities {
+      padding: 80px 0;
+    }
+
+    .resp-table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--steel-gray);
+      box-shadow: var(--shadow-md);
+    }
+
+    .resp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .resp-table thead {
+      background: var(--deep-navy);
+      color: #fff;
+    }
+
+    .resp-table th {
+      padding: 16px 20px;
+      text-align: right;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .resp-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--surface-container);
+      vertical-align: top;
+      line-height: 1.7;
+    }
+
+    .resp-table tbody tr {
+      background: var(--surface-white);
+      transition: all 0.2s ease;
+    }
+    .resp-table tbody tr:hover {
+      background: var(--surface-off-white);
+      box-shadow: inset 3px 0 0 var(--safety-orange);
+    }
+
+    .resp-table tbody tr:nth-child(even) {
+      background: var(--surface-off-white);
+    }
+    .resp-table tbody tr:nth-child(even):hover {
+      background: var(--surface-container);
+    }
+
+    .resp-entity {
+      font-weight: 700;
+      color: var(--deep-navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .resp-entity svg { width: 18px; height: 18px; color: var(--safety-orange); }
+
+    /* ===== TIMELINE SECTION ===== */
+    .timeline-section {
+      padding: 80px 0;
+      background: var(--deep-navy);
+      color: #fff;
+      position: relative;
+    }
+
+    .timeline-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .timeline-section .section-label { color: var(--safety-orange); }
+    .timeline-section .section-title { color: #fff; }
+    .timeline-section .section-desc { color: rgba(255,255,255,0.6); }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-item {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .timeline-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .timeline-item:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .timeline-day {
+      font-family: var(--font-inter);
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--safety-orange);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .timeline-day-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .timeline-phase {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .timeline-tasks {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+    }
+
+    .timeline-total {
+      grid-column: 1 / -1;
+      padding: 24px 28px;
+      background: var(--safety-orange);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .timeline-total-label {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .timeline-total-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ===== IMAGE LIGHTBOX MODAL ===== */
+    .image-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 13, 26, 0.94);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .image-modal.active { display: flex; }
+
+    .image-modal-content {
+      position: relative;
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-modal-img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .image-modal-caption {
+      margin-top: 14px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .image-modal-caption span {
+      background: var(--safety-orange);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 8px;
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: -44px;
+      left: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 36px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .image-modal-close:hover { color: var(--safety-orange); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 48px 0 24px;
+      background: var(--deep-navy-dark);
+      color: rgba(255,255,255,0.6);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--safety-orange) 0px,
+        var(--safety-orange) 20px,
+        var(--deep-navy-dark) 20px,
+        var(--deep-navy-dark) 40px
+      );
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .footer-text strong {
+      display: block;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .footer-credit {
+      font-size: 13px;
+      text-align: left;
+    }
+    .footer-credit strong { color: var(--safety-orange); }
+
+    .footer-bottom {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ===== REVEAL ANIMATION ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ===== HIGH-QUALITY COLORED PRINT & PDF STYLES ===== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 12mm 12mm;
+      }
+
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #1a1c1c !important;
+        font-size: 11pt !important;
+        line-height: 1.5 !important;
+      }
+
+      body::before { display: none !important; }
+
+      /* Hide interactive UI */
+      .sidebar, .mobile-toggle, .sidebar-overlay, .hero-actions,
+      .image-modal, .btn-print, .mos-trigger-arrow, .sidebar-footer,
+      .mos-diagram-overlay, .hotspot-pin, .hero-visual-footer {
+        display: none !important;
+      }
+
+      .main-content {
+        margin-right: 0 !important;
+        width: 100% !important;
+      }
+
+      /* Hero Section in Print */
+      .hero {
+        background: #0A192F !important;
+        color: #ffffff !important;
+        padding: 24px 20px !important;
+        margin-bottom: 20px !important;
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      .hero h1 {
+        font-size: 24pt !important;
+        color: #ffffff !important;
+        margin-bottom: 8px !important;
+      }
+
+      .hero-desc {
+        font-size: 10.5pt !important;
+        color: rgba(255,255,255,0.88) !important;
+        margin-bottom: 0 !important;
+      }
+
+      .hero-grid {
+        display: grid !important;
+        grid-template-columns: 1.2fr 0.8fr !important;
+        gap: 20px !important;
+      }
+
+      .hero-visual-card {
+        border: 1px solid rgba(255,255,255,0.3) !important;
+        background: #060D1A !important;
+      }
+
+      .hero-visual-img {
+        max-height: 170px !important;
+        object-fit: cover !important;
+      }
+
+      /* Stats in Print */
+      .stats {
+        margin-top: 0 !important;
+        margin-bottom: 24px !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        border: 1px solid #E0E0E0 !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+      }
+
+      .stat-item {
+        padding: 12px 8px !important;
+        border-left: 1px solid #E0E0E0 !important;
+      }
+
+      .stat-number {
+        font-size: 22pt !important;
+        color: #0A192F !important;
+      }
+
+      /* Phases in Print */
+      .phases {
+        padding: 16px 0 !important;
+      }
+
+      .phases-header {
+        margin-bottom: 20px !important;
+      }
+
+      .phase-timeline::before { display: none !important; }
+
+      .phase-card {
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 16px !important;
+        display: flex !important;
+        flex-direction: row !important;
+      }
+
+      .phase-number {
+        background: #0A192F !important;
+        color: #ffffff !important;
+      }
+
+      .phase-body {
+        border: 1px solid #E0E0E0 !important;
+        padding: 16px !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        transform: none !important;
+      }
+
+      .hazard-bar-fill {
+        background: #FF6B00 !important;
+      }
+
+      /* MOS Section in Print: Fully Expanded with Colored Diagrams */
+      .mos-section {
+        padding: 20px 0 !important;
+        page-break-before: always;
+      }
+
+      .mos-item {
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 24px !important;
+        border: 1px solid #C5C6CD !important;
+      }
+
+      .mos-trigger {
+        background: #0A192F !important;
+        color: #ffffff !important;
+        padding: 12px 18px !important;
+      }
+
+      .mos-trigger-title {
+        color: #ffffff !important;
+        font-size: 13pt !important;
+      }
+
+      .mos-trigger-icon {
+        background: rgba(255,255,255,0.15) !important;
+      }
+
+      .mos-content {
+        max-height: none !important;
+        display: block !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+      }
+
+      .mos-content-inner {
+        padding: 18px !important;
+        border-top: 1px solid #E0E0E0 !important;
+      }
+
+      .mos-diagram-box {
+        border: 1px solid #C5C6CD !important;
+        background: #0A192F !important;
+        margin-bottom: 18px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .mos-diagram-img {
+        max-height: 220px !important;
+        width: 100% !important;
+        object-fit: contain !important;
+        background: #ffffff !important;
+      }
+
+      .mos-form-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+        padding: 12px !important;
+        background: #F4F3F3 !important;
+        margin-bottom: 16px !important;
+        border: 1px solid #E0E0E0 !important;
+      }
+
+      .mos-steps li {
+        padding: 8px 0 !important;
+        font-size: 10pt !important;
+      }
+
+      .mos-steps li::before {
+        background: rgba(255,107,0,0.15) !important;
+        color: #FF6B00 !important;
+      }
+
+      /* Responsibilities in Print */
+      .responsibilities {
+        padding: 20px 0 !important;
+        page-break-before: always;
+      }
+
+      .resp-table thead {
+        background: #0A192F !important;
+        color: #ffffff !important;
+      }
+
+      .resp-table th, .resp-table td {
+        padding: 10px 14px !important;
+      }
+
+      tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      /* Schedule in Print */
+      .timeline-section {
+        padding: 24px 0 !important;
+        background: #0A192F !important;
+        color: #ffffff !important;
+        page-break-before: always;
+      }
+
+      .timeline-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+      }
+
+      .timeline-item {
+        opacity: 1 !important;
+        transform: none !important;
+        border: 1px solid rgba(255,255,255,0.2) !important;
+        padding: 14px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .timeline-total {
+        background: #FF6B00 !important;
+        color: #ffffff !important;
+        padding: 14px 20px !important;
+      }
+
+      /* Footer in Print */
+      .footer {
+        background: #060D1A !important;
+        color: #ffffff !important;
+        padding: 20px 0 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main-content { margin-right: 0; }
+      .mobile-toggle { display: flex; }
+      .sidebar-overlay.active { display: block; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero h1 { font-size: 34px; }
+      .stat-number { font-size: 36px; }
+      .mos-form-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 50px 0 36px; }
+      .hero h1 { font-size: 26px; }
+      .hero-desc { font-size: 14.5px; }
+      .hero-logo { width: 52px; height: 52px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-number { font-size: 30px; }
+      .stat-item { padding: 18px 12px; }
+      .section-title { font-size: 24px; }
+      .phase-card { flex-direction: column; gap: 0; }
+      .phase-marker { flex-direction: row; width: 100%; margin-bottom: 0; }
+      .phase-timeline::before { display: none; }
+      .phase-body { padding: 18px; }
+      .mos-trigger { padding: 16px; gap: 12px; }
+      .mos-trigger-title { font-size: 15px; }
+      .mos-content-inner { padding: 18px; }
+      .resp-table { font-size: 13px; }
+      .resp-table th, .resp-table td { padding: 12px; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .hero-visual-footer { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-credit { text-align: center; }
+      .hero-actions { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== MOBILE TOGGLE ===== -->
+  <button class="mobile-toggle" id="mobileToggle" aria-label="فتح القائمة">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="icon.png" alt="WUH" class="sidebar-logo">
+      <div class="sidebar-brand">
+        انطلق بقوة
+        <small>Wheels Up Holding</small>
+      </div>
+    </div>
+    <ul class="sidebar-nav" id="sidebarNav">
+      <li><a href="#hero" class="active">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        الرئيسية
+      </a></li>
+      <li><a href="#stats">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        لوحة المعلومات
+      </a></li>
+      <li><a href="#phases">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        مراحل سير العمل
+        <span class="nav-badge">5</span>
+      </a></li>
+      <li><a href="#mos">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        ملفات MOS الهندسية
+        <span class="nav-badge">5</span>
+      </a></li>
+      <li><a href="#responsibilities">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        مصفوفة المسؤوليات
+      </a></li>
+      <li><a href="#schedule">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        الجدول الزمني
+      </a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <button class="btn-print" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>طباعة الدليل الملون PDF</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <div class="hero-grid">
+          
+          <!-- Hero Text Column -->
+          <div class="hero-text-col">
+            <div class="hero-top">
+              <img src="LOGO-01.png" alt="شعار انطلق بقوة" class="hero-logo">
+              <div class="hero-company">
+                <span>Wheels Up Holding</span>
+                <strong>انطلق بقوة القابضة</strong>
+              </div>
+            </div>
+            <div class="hero-module-id">INSULATION DEPT. — OPERATIONAL & MOS MANUAL v2.0</div>
+            <h1>الدليل الإرشادي لقسم العزل</h1>
+            <p class="hero-desc">
+              يوضح هذا الدليل الشامل هيكل العمل الفني، ومصفوفة المسؤوليات، والجدول الزمني القياسي لإدارة مشاريع العزل من مرحلة المعاينة والتعاقد وحتى التسليم النهائي، مدعوماً بمخططات آلية التنفيذ (Method of Statement) والنماذج الهندسية المتطابقة مع واقع العمل.
+            </p>
+            <div class="hero-actions">
+              <a href="#phases" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                <span>استعراض المراحل التشغيلية</span>
+              </a>
+              <button class="btn btn-outline" onclick="window.print()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                <span>طباعة الدليل الملون (PDF)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero Visual Column (Accurate 3D Schematic with Interactive Hotspots) -->
+          <div class="hero-visual-col">
+            <div class="hero-visual-card">
+              <div class="hero-visual-header">
+                <div class="hero-visual-tag">
+                  <span class="tag-code">3D ISOMETRIC BUILDING CUTAWAY</span>
+                  <span>—</span>
+                  <span>نطاقات العزل الفعلية</span>
+                </div>
+                <span class="hero-visual-code">WUH-MOS-SPEC</span>
+              </div>
+              
+              <div class="hero-visual-img-wrap" style="position: relative;">
+                <img src="assets/images/hero_insulation_3d.jpg" alt="النموذج الهندسي ثلاثي الأبعاد لأنظمة العزل" class="hero-visual-img" onclick="openImageModal('assets/images/hero_insulation_3d.jpg', 'القطاع المعماري ثلاثي الأبعاد الشامل لأنظمة العزل المعتمدة بالدليل')">
+                
+                <!-- Hotspot 1: Roof Foam & Membrane -->
+                <div class="hotspot-pin pin-tip-bottom" style="top: 18%; right: 48%;" onclick="event.stopPropagation(); jumpToMos('mos-item-01')">
+                  <div class="hotspot-dot">01</div>
+                  <div class="hotspot-tooltip">
+                    <span class="hotspot-tag">MOS-01 & 04 / ROOF SYSTEM</span>
+                    <div class="hotspot-title">عزل الأسطح (فوم + ممبرين)</div>
+                    <div class="hotspot-desc">خرسانة رغوية بميول على الصفايات 3-10 سم + فوم بولي يوريثان 3-5 سم + طلاء أكريليك UV وممبرين مبحص.</div>
+                    <div class="hotspot-btn">
+                      <span>انقر للانتقال لمواصفات البند</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hotspot 2: Bathroom & Wet Areas Membrane -->
+                <div class="hotspot-pin" style="top: 48%; right: 38%;" onclick="event.stopPropagation(); jumpToMos('mos-item-02')">
+                  <div class="hotspot-dot">02</div>
+                  <div class="hotspot-tooltip">
+                    <span class="hotspot-tag">MOS-02 / WET AREAS</span>
+                    <div class="hotspot-title">عزل دورات المياه والمطابخ</div>
+                    <div class="hotspot-desc">لياسة ناعمة بحواف مشطوفة + برايمر أساس + طبقتين لفائف ممبرين بركوب 10 سم أفقي و 15 سم رأسي + اختبار 72 ساعة.</div>
+                    <div class="hotspot-btn">
+                      <span>انقر للانتقال لمواصفات البند</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hotspot 3: Water Tank & Swimming Pool Cementitious -->
+                <div class="hotspot-pin" style="top: 78%; right: 42%;" onclick="event.stopPropagation(); jumpToMos('mos-item-03')">
+                  <div class="hotspot-dot">03</div>
+                  <div class="hotspot-tooltip">
+                    <span class="hotspot-tag">MOS-03 / WATER TANK & POOL</span>
+                    <div class="hotspot-title">عزل الخزانات والمسابح</div>
+                    <div class="hotspot-desc">تفريغ الزوايا 2 سم وسدها ببلق هيدروليكي + معالجة التعشيش + وجهين عزل إسمنتي بوليمري متعامد.</div>
+                    <div class="hotspot-btn">
+                      <span>انقر للانتقال لمواصفات البند</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hotspot 4: Honeycombing & Concrete Repair -->
+                <div class="hotspot-pin pin-tip-left" style="top: 68%; right: 76%;" onclick="event.stopPropagation(); jumpToMos('mos-item-05')">
+                  <div class="hotspot-dot">05</div>
+                  <div class="hotspot-tooltip">
+                    <span class="hotspot-tag">MOS-05 / CONCRETE REPAIR</span>
+                    <div class="hotspot-title">معالجة التعشيشات الإنشائية</div>
+                    <div class="hotspot-desc">تكسير الضعف + صنفرة حديد التسليح من الصدأ + دهان بوند لياسة أزرق + جراوت إنشائي غير قابل للانكماش.</div>
+                    <div class="hotspot-btn">
+                      <span>انقر للانتقال لمواصفات البند</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Quick interactive legend footer (2x2 Architectural Grid) -->
+              <div class="hero-visual-footer">
+                <div class="hero-legend-card" onclick="jumpToMos('mos-item-01')">
+                  <div class="legend-badge">01</div>
+                  <div class="legend-info">
+                    <span class="legend-title">عزل الأسطح (فوم + ممبرين)</span>
+                    <span class="legend-sub">MOS-01 & 04 (Roof Foam & SBS)</span>
+                  </div>
+                  <svg class="legend-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </div>
+
+                <div class="hero-legend-card" onclick="jumpToMos('mos-item-02')">
+                  <div class="legend-badge">02</div>
+                  <div class="legend-info">
+                    <span class="legend-title">عزل دورات المياه والمطابخ</span>
+                    <span class="legend-sub">MOS-02 (Bitumen Membrane)</span>
+                  </div>
+                  <svg class="legend-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </div>
+
+                <div class="hero-legend-card" onclick="jumpToMos('mos-item-03')">
+                  <div class="legend-badge">03</div>
+                  <div class="legend-info">
+                    <span class="legend-title">عزل الخزانات والمسابح</span>
+                    <span class="legend-sub">MOS-03 (Cementitious Slurry)</span>
+                  </div>
+                  <svg class="legend-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </div>
+
+                <div class="hero-legend-card" onclick="jumpToMos('mos-item-05')">
+                  <div class="legend-badge">05</div>
+                  <div class="legend-info">
+                    <span class="legend-title">معالجة التعشيش والخرسانة</span>
+                    <span class="legend-sub">MOS-05 (Structural Grout)</span>
+                  </div>
+                  <svg class="legend-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <section class="stats" id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item" data-module="SRV">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <div class="stat-number" data-target="5" data-suffix="">0</div>
+            <div class="stat-label">خدمات ومخططات MOS</div>
+          </div>
+          <div class="stat-item" data-module="PHS">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="stat-number" data-target="5" data-suffix="">0</div>
+            <div class="stat-label">مراحل تشغيلية قياسية</div>
+          </div>
+          <div class="stat-item" data-module="DUR">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="stat-number" data-target="7" data-suffix="">0</div>
+            <div class="stat-label">أيام عمل قياسية</div>
+          </div>
+          <div class="stat-item" data-module="SQM">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="stat-number" data-target="500" data-suffix="+">0</div>
+            <div class="stat-label">م² متوسط مساحة المشروع</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PHASES ===== -->
+    <section class="phases" id="phases">
+      <div class="container">
+        <div class="phases-header reveal">
+          <div class="section-label">WORKFLOW PHASES & GOVERNANCE</div>
+          <h2 class="section-title">مراحل سير العمل التشغيلية</h2>
+          <p class="section-desc">خمس مراحل قياسية متكاملة تضمن تنفيذ أعمال ومشاريع العزل بأعلى معايير الجودة والرقابة الفنية والمالية.</p>
+        </div>
+
+        <div class="phase-timeline">
+
+          <!-- Phase 1 -->
+          <div class="phase-card reveal-right">
+            <div class="phase-marker">
+              <div class="phase-number">01</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-module-id">PHASE-01 / PLANNING & SURVEY</div>
+              <h3 class="phase-title">
+                <svg class="phase-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                التخطيط والتحضير
+              </h3>
+              <div class="phase-meta">
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  إدارة المبيعات / مدير المشاريع
+                </span>
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  1 - 2 يوم عمل
+                </span>
+              </div>
+              <p class="phase-desc">تبدأ هذه المرحلة من طلب العميل وحتى تجهيز عقود العمل وتحديد الاحتياجات.</p>
+              <ul class="phase-tasks">
+                <li>معاينة الموقع: زيارة موقع العميل لرفع المقاسات (التمتير المبدئي)، وتقييم حالة السطح، وتحديد نوع العزل المناسب.</li>
+                <li>التعاقد مع العميل: توقيع عقد تنفيذ الأعمال مع المالك (العميل) وتوضيح الشروط والدفعات.</li>
+                <li>تحديد الاحتياجات: حساب كميات المواد المطلوبة بدقة هندسية لتقليل الهدر.</li>
+                <li>التعاقد مع العمالة (الطرف الثاني): توقيع عقد المصنعية مع مؤسسة العمالة وتحديد موعد النزول للموقع.</li>
+              </ul>
+              <div class="hazard-bar"><div class="hazard-bar-fill" style="width: 20%"></div></div>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="phase-card reveal-right">
+            <div class="phase-marker">
+              <div class="phase-number">02</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-module-id">PHASE-02 / PROCUREMENT & LOGISTICS</div>
+              <h3 class="phase-title">
+                <svg class="phase-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                التوريد واللوجستيات
+              </h3>
+              <div class="phase-meta">
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  إدارة المشتريات / الدعم اللوجستي
+                </span>
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  1 - 2 يوم عمل
+                </span>
+              </div>
+              <p class="phase-desc">تختص بتأمين المواد من المصانع/الموردين وإيصالها للموقع.</p>
+              <ul class="phase-tasks">
+                <li>إصدار أوامر الشراء (PO): إرسال طلبات التوريد للشركات الموردة المعتمدة.</li>
+                <li>الاستلام والتخزين المبدئي: استلام المواد والتأكد من مطابقتها للمواصفات وصلاحيتها.</li>
+                <li>النقل للموقع: نقل المواد إلى موقع المشروع مع ترتيب مكان آمن لحفظها بعيداً عن التلف.</li>
+              </ul>
+              <div class="hazard-bar"><div class="hazard-bar-fill" style="width: 40%"></div></div>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="phase-card reveal-right">
+            <div class="phase-marker">
+              <div class="phase-number">03</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-module-id">PHASE-03 / SITE EXECUTION & SUPERVISION</div>
+              <h3 class="phase-title">
+                <svg class="phase-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                التنفيذ وإدارة الموقع
+              </h3>
+              <div class="phase-meta">
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  الجهة المنفذة + مشرف الموقع
+                </span>
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  2 - 4 أيام عمل
+                </span>
+              </div>
+              <p class="phase-desc">مرحلة العمل الفعلي وتطبيق العزل حسب الأصول الفنية.</p>
+              <ul class="phase-tasks">
+                <li>تجهيز السطح: قيام العمالة بتنظيف السطح، إزالة المخلفات، وعمل الوزرات (رقبة الزجاجة)، ومعالجة التشققات.</li>
+                <li>الاعتماد المبدئي: فحص المشرف للسطح بعد التجهيز وقبل فرد أي مواد.</li>
+                <li>فرد/رش الأساس والعزل: تطبيق طبقة البرايمر، ثم طبقات العزل الأساسية بالسماكة المعتمدة.</li>
+                <li>طبقة الحماية: تنفيذ الطبقة الواقية (أكريليك أو غيره).</li>
+                <li>المتابعة اليومية: رفع "تقرير إنجاز بنود الأعمال" يومياً من قبل المشرف لتوثيق الإنجاز واستهلاك المواد.</li>
+              </ul>
+              <div class="hazard-bar"><div class="hazard-bar-fill" style="width: 60%"></div></div>
+            </div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="phase-card reveal-right">
+            <div class="phase-marker">
+              <div class="phase-number">04</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-module-id">PHASE-04 / QA TESTING & LEAK CONTROL</div>
+              <h3 class="phase-title">
+                <svg class="phase-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                الاختبار وضبط الجودة
+              </h3>
+              <div class="phase-meta">
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  مشرف الموقع بالتعاون مع العمالة
+                </span>
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  يومان (48 ساعة)
+                </span>
+              </div>
+              <p class="phase-desc">التأكد من خلو الأعمال من أي عيوب قبل التسليم النهائي.</p>
+              <ul class="phase-tasks">
+                <li>تسكير فتحات الصرف: إغلاق جميع مواسير التصريف (الصفايات) بإحكام.</li>
+                <li>غمر السطح: تعبئة السطح المعزول بالماء لارتفاع مناسب (حسب طبيعة السطح).</li>
+                <li>المراقبة: ترك الماء لمدة 48 ساعة متواصلة.</li>
+                <li>الفحص والتفريغ: فحص الأسقف السفلية للتأكد من عدم وجود تسريبات، ثم تفريغ السطح وتجفيفه.</li>
+              </ul>
+              <div class="hazard-bar"><div class="hazard-bar-fill" style="width: 80%"></div></div>
+            </div>
+          </div>
+
+          <!-- Phase 5 -->
+          <div class="phase-card reveal-right">
+            <div class="phase-marker">
+              <div class="phase-number">05</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-module-id">PHASE-05 / HANDOVER & FINANCIAL CLOSURE</div>
+              <h3 class="phase-title">
+                <svg class="phase-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                التسليم والإغلاق المالي
+              </h3>
+              <div class="phase-meta">
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  إدارة المشاريع / الإدارة المالية
+                </span>
+                <span class="phase-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  1 يوم عمل
+                </span>
+              </div>
+              <p class="phase-desc">المرحلة الختامية لإنهاء المشروع وحفظ حقوق جميع الأطراف.</p>
+              <ul class="phase-tasks">
+                <li>التسليم للعميل: توقيع محضر استلام الأعمال النهائي مع العميل.</li>
+                <li>إصدار الضمان: تسليم العميل "شهادة ضمان أعمال العزل المائي".</li>
+                <li>التمتير النهائي: رفع المقاسات الفعلية المنفذة على الطبيعة لتسوية الحسابات.</li>
+                <li>تصفية حساب العميل: تحصيل الدفعة الأخيرة.</li>
+                <li>تصفية مستحقات العمالة: صرف الدفعة الأخيرة بعد الخصومات/الهدر إن وجد.</li>
+                <li>تسوية حسابات الموردين: للمواد المستهلكة في المشروع (إن وجد).</li>
+              </ul>
+              <div class="hazard-bar"><div class="hazard-bar-fill" style="width: 100%"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MOS SECTION ===== -->
+    <section class="mos-section" id="mos">
+      <div class="container">
+        <div class="mos-header reveal">
+          <div class="section-label">ENGINEERING SPECIFICATIONS & METHOD OF STATEMENT</div>
+          <h2 class="section-title">ملفات آلية تنفيذ الأعمال (MOS) والمخططات الهندسية</h2>
+          <p class="section-desc">خمسة أنظمة عزل ومعالجة متخصصة، موثقة بالمواصفات والخطوات الميدانية والمخططات الهندسية ثلاثية الأبعاد (3D).</p>
+        </div>
+
+        <div class="mos-accordion" id="mosAccordion">
+
+          <!-- MOS 01: Roof Foam -->
+          <div class="mos-item reveal" id="mos-item-01">
+            <button class="mos-trigger" onclick="toggleMos(this)">
+              <div class="mos-trigger-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              </div>
+              <div class="mos-trigger-text">
+                <div class="mos-trigger-id">MOS-01 / ROOF FOAM INSULATION</div>
+                <div class="mos-trigger-title">أعمال عزل الأسطح بالفوم (Polyurethane Foam)</div>
+              </div>
+              <svg class="mos-trigger-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mos-content">
+              <div class="mos-content-inner">
+                
+                <!-- MOS 01 Technical Diagram Box -->
+                <div class="mos-diagram-box">
+                  <div class="mos-diagram-header">
+                    <span class="mos-diagram-tag">3D TECHNICAL SCHEMATIC — ROOF FOAM SYSTEM</span>
+                    <span class="mos-diagram-code">DWG-MOS-01</span>
+                  </div>
+                  <div class="mos-diagram-body" onclick="openImageModal('assets/images/mos_roof_foam.jpg', 'المخطط الهندسي التفصيلي لعزل الأسطح بالفوم (MOS-01)')">
+                    <img src="assets/images/mos_roof_foam.jpg" alt="مخطط عزل الأسطح بالفوم" class="mos-diagram-img">
+                    <div class="mos-diagram-overlay">
+                      <div class="mos-diagram-overlay-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        انقر للتكبير والمطالعة الهندسية
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mos-form-grid">
+                  <div class="mos-field">
+                    <div class="mos-field-label">PROJECT NAME</div>
+                    <div class="mos-field-value">اسم المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">DESCRIPTION</div>
+                    <div class="mos-field-value">أعمال عزل الأسطح فوم بولي يوريثان + حماية أكريليك</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">LOCATION</div>
+                    <div class="mos-field-value">موقع المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">DURATION</div>
+                    <div class="mos-field-value">حسب جدول المراحل القياسي</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">SUPERVISOR ROLE</div>
+                    <div class="mos-field-value">مشرف الموقع الميداني</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">QA TEST REQUIREMENT</div>
+                    <div class="mos-field-value">اختبار غمر بالماء لمدة 72 ساعة</div>
+                  </div>
+                </div>
+
+                <div class="mos-steps-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  آلية تنفيذ الأعمال والخطوات الميدانية
+                </div>
+                <ol class="mos-steps">
+                  <li>عمل أوتار الميول لصب الخرسانة الرغوية بميول دقيقة على الصفايات ومخارج التصريف.</li>
+                  <li>صب الخرسانة الرغوية (Lightweight Foam Concrete) بالميول المطلوب وبسماكة تتراوح بين 3 إلى 10 سم.</li>
+                  <li>معالجة الخرسانة الرغوية عن طريق رشها بالمياه بشكل مستمر لمدة 3 أيام لضمان التصلب ومنع الشروخ.</li>
+                  <li>رش طبقة العزل الحراري والمائي البولي يوريثان فوم (Polyurethane Spray Foam) بسماكة 3 سم إلى 5 سم.</li>
+                  <li>دهان طبقة الحماية الأكريليك المقاومة للأشعة فوق البنفسجية (UV-Resistant Acrylic) بسماكة تصل إلى 1 ملم.</li>
+                  <li>اختبار السطح عن طريق تعبئته بالكامل بالمياه وفحصه لمدة 72 ساعة متواصلة للتأكد من انعدام أي تسريب.</li>
+                  <li>فرد طبقة الفصل الجيوتكستايل (Geotextile Separator Fabric) لحماية النظام قبل البلاط أو الدفان.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOS 02: WC Membrane -->
+          <div class="mos-item reveal" id="mos-item-02">
+            <button class="mos-trigger" onclick="toggleMos(this)">
+              <div class="mos-trigger-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="mos-trigger-text">
+                <div class="mos-trigger-id">MOS-02 / WET AREAS MEMBRANE</div>
+                <div class="mos-trigger-title">أعمال عزل دورات المياه والمطابخ (Bitumen Membrane)</div>
+              </div>
+              <svg class="mos-trigger-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mos-content">
+              <div class="mos-content-inner">
+                
+                <!-- MOS 02 Technical Diagram Box -->
+                <div class="mos-diagram-box">
+                  <div class="mos-diagram-header">
+                    <span class="mos-diagram-tag">3D TECHNICAL SCHEMATIC — WET AREAS SYSTEM</span>
+                    <span class="mos-diagram-code">DWG-MOS-02</span>
+                  </div>
+                  <div class="mos-diagram-body" onclick="openImageModal('assets/images/mos_wc_membrane.jpg', 'المخطط الهندسي التفصيلي لعزل دورات المياه والمطابخ (MOS-02)')">
+                    <img src="assets/images/mos_wc_membrane.jpg" alt="مخطط عزل دورات المياه بالممبرين" class="mos-diagram-img">
+                    <div class="mos-diagram-overlay">
+                      <div class="mos-diagram-overlay-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        انقر للتكبير والمطالعة الهندسية
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mos-form-grid">
+                  <div class="mos-field">
+                    <div class="mos-field-label">PROJECT NAME</div>
+                    <div class="mos-field-value">اسم المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">DESCRIPTION</div>
+                    <div class="mos-field-value">عزل دورات المياه والمطابخ بلفائف الممبرين المزدوجة</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">LOCATION</div>
+                    <div class="mos-field-value">موقع المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">OVERLAP STANDARDS</div>
+                    <div class="mos-field-value">ركوب أفقي 10 سم / ركوب رأسي 15 سم</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">SUPERVISOR ROLE</div>
+                    <div class="mos-field-value">مشرف الموقع الميداني</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">QA TEST REQUIREMENT</div>
+                    <div class="mos-field-value">اختبار غمر بالماء لمدة 72 ساعة</div>
+                  </div>
+                </div>
+
+                <div class="mos-steps-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  آلية تنفيذ الأعمال والخطوات الميدانية
+                </div>
+                <ol class="mos-steps">
+                  <li>تنظيف السطح الخرساني تماماً وإزالة الأتربة والشوائب والنتوءات الخرسانية.</li>
+                  <li>عمل طبقة تلييس ناعم للأرضيات مع حواف مشطوفة (وزرات مقعرة) لاستقبال نظام العزل المائي وحماية الزوايا.</li>
+                  <li>دهان طبقة برايمر الأساس البيتوميني (Bitumen Primer) على كامل المسطح وتركه حتى يجف تماماً.</li>
+                  <li>البدء بفرد وتركيب الطبقة الأولى من لفائف الممبرين باللحام الحراري (Torch-Applied SBS Membrane).</li>
+                  <li>ضبط الركوب الأفقي في نقاط تلاقي الرولات بمقدار 10 سم، والركوب الرأسي على الجدران بمقدار 15 سم كحد أدنى.</li>
+                  <li>البدء بفرد الطبقة الثانية من لفائف الممبرين مع إزاحة الفواصل (Staggered Joints) لتجنب تطابق نقاط الركوب.</li>
+                  <li>اختبار السطح والأرضيات عن طريق تعبئتها بالكامل بالمياه وفحصها لمدة 72 ساعة ومراقبة الأسقف السفلية.</li>
+                  <li>فرد طبقة الفصل الجيوتكستايل (Geotextile) لحماية لفائف الممبرين أثناء أعمال التمديدات والبلاط.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOS 03: WT Cement -->
+          <div class="mos-item reveal" id="mos-item-03">
+            <button class="mos-trigger" onclick="toggleMos(this)">
+              <div class="mos-trigger-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 6V4"/><path d="M18 6V4"/></svg>
+              </div>
+              <div class="mos-trigger-text">
+                <div class="mos-trigger-id">MOS-03 / WATER TANK & POOL CEMENTITIOUS</div>
+                <div class="mos-trigger-title">أعمال عزل الخزانات والمسابح (Cementitious Slurry)</div>
+              </div>
+              <svg class="mos-trigger-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mos-content">
+              <div class="mos-content-inner">
+                
+                <!-- MOS 03 Technical Diagram Box -->
+                <div class="mos-diagram-box">
+                  <div class="mos-diagram-header">
+                    <span class="mos-diagram-tag">3D TECHNICAL SCHEMATIC — WATER TANK CEMENTITIOUS</span>
+                    <span class="mos-diagram-code">DWG-MOS-03</span>
+                  </div>
+                  <div class="mos-diagram-body" onclick="openImageModal('assets/images/mos_wt_cement.jpg', 'المخطط الهندسي لعزل الخزانات والمسابح إسمنتياً (MOS-03)')">
+                    <img src="assets/images/mos_wt_cement.jpg" alt="مخطط عزل الخزانات والمسابح" class="mos-diagram-img">
+                    <div class="mos-diagram-overlay">
+                      <div class="mos-diagram-overlay-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        انقر للتكبير والمطالعة الهندسية
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mos-form-grid">
+                  <div class="mos-field">
+                    <div class="mos-field-label">PROJECT NAME</div>
+                    <div class="mos-field-value">اسم المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">DESCRIPTION</div>
+                    <div class="mos-field-value">أعمال عزل الخزانات الأرضية والمسابح بالعزل الإسمنتي البوليمري</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">LOCATION</div>
+                    <div class="mos-field-value">موقع المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">CORNER TREATMENT</div>
+                    <div class="mos-field-value">تفريغ 2 سم وتعبئة بمادة السد الهيدروليكي (Water Plug)</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">SUPERVISOR ROLE</div>
+                    <div class="mos-field-value">مشرف الموقع / فريق الإشراف</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">QA TEST REQUIREMENT</div>
+                    <div class="mos-field-value">اختبار غمر وتعبئة مياه كاملة ومراقبة المنسوب</div>
+                  </div>
+                </div>
+
+                <div class="mos-steps-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  آلية تنفيذ الأعمال والخطوات الميدانية
+                </div>
+                <ol class="mos-steps">
+                  <li>معالجة الخرسانة الداخلية بالصنفرة وإزالة الزوائد والنتوءات لضمان نعومة واستواء السطح.</li>
+                  <li>تكسير وتفريغ زوايا الخزان الرأسية والأفقية بعمق وعرض 2 سم لفتح مسار شريط الحماية.</li>
+                  <li>تعبئة الزوايا بمادة البلق الهيدروليكية المانعة للنفاذية (Water Plug Mortar) لإغلاق نقاط الضعف والفواصل الإنشائية.</li>
+                  <li>معالجة تعشيشات الخرسانة بواسطة مادة الجراوت غير القابلة للانكماش (Non-Shrink Structural Grout).</li>
+                  <li>غسيل وتنظيف السطح تماماً من الأتربة والأوساخ وبقايا التكسير لضمان قوة الالتصاق.</li>
+                  <li>تطبيق الوجه الأول من العزل الإسمنتي البوليمري في اتجاه واحد وتركه حتى يجف تماماً.</li>
+                  <li>تطبيق الوجه الثاني من العزل الإسمنتي في الاتجاه المعاكس (Cross Application) لضمان تغطية المسام بنسبة 100%.</li>
+                  <li>اختبار الخزان أو المسبح عن طريق تعبئته بالكامل بالمياه ومراقبة منسوب المياه للتأكد من سلامة العزل.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOS 04: Foam + Membrane -->
+          <div class="mos-item reveal" id="mos-item-04">
+            <button class="mos-trigger" onclick="toggleMos(this)">
+              <div class="mos-trigger-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="mos-trigger-text">
+                <div class="mos-trigger-id">MOS-04 / HYBRID FOAM & MEMBRANE</div>
+                <div class="mos-trigger-title">أعمال عزل الأسطح الهجين: فوم + ممبرين (Hybrid Roof System)</div>
+              </div>
+              <svg class="mos-trigger-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mos-content">
+              <div class="mos-content-inner">
+                
+                <!-- MOS 04 Technical Diagram Box -->
+                <div class="mos-diagram-box">
+                  <div class="mos-diagram-header">
+                    <span class="mos-diagram-tag">3D TECHNICAL SCHEMATIC — HYBRID FOAM & MEMBRANE</span>
+                    <span class="mos-diagram-code">DWG-MOS-04</span>
+                  </div>
+                  <div class="mos-diagram-body" onclick="openImageModal('assets/images/mos_foam_membrane.jpg', 'المخطط الهندسي للنظام الهجين فوم + ممبرين (MOS-04)')">
+                    <img src="assets/images/mos_foam_membrane.jpg" alt="مخطط عزل الأسطح فوم وممبرين" class="mos-diagram-img">
+                    <div class="mos-diagram-overlay">
+                      <div class="mos-diagram-overlay-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        انقر للتكبير والمطالعة الهندسية
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mos-form-grid">
+                  <div class="mos-field">
+                    <div class="mos-field-label">PROJECT NAME</div>
+                    <div class="mos-field-value">اسم المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">DESCRIPTION</div>
+                    <div class="mos-field-value">النظام الهجين المتكامل: فوم بولي يوريثان + لفائف ممبرين مبحصة</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">LOCATION</div>
+                    <div class="mos-field-value">موقع المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">PERIMETER PRIMER</div>
+                    <div class="mos-field-value">شريط برايمر 20 سم طولي × 100 سم عرض على الأطراف</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">SUPERVISOR ROLE</div>
+                    <div class="mos-field-value">مشرف الموقع الميداني</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">QA TEST REQUIREMENT</div>
+                    <div class="mos-field-value">اختبار غمر بالماء لمدة 72 ساعة متواصلة</div>
+                  </div>
+                </div>
+
+                <div class="mos-steps-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  آلية تنفيذ الأعمال والخطوات الميدانية
+                </div>
+                <ol class="mos-steps">
+                  <li>عمل أوتار الميول لصب الخرسانة الرغوية بميول دقيقة موجهة نحو الصفايات.</li>
+                  <li>صب الخرسانة الرغوية بالميول الهندسي المطلوب وبسماكة تتراوح بين 3 إلى 10 سم.</li>
+                  <li>معالجة الخرسانة الرغوية برش المياه لمدة 3 أيام لضمان الترطيب والتصلب التام.</li>
+                  <li>دهان طبقة برايمر الأساس على أطراف المسطح بمقاس 20 سم طولي و100 سم عرض كشريط ربط معتمد.</li>
+                  <li>البدء بفرد الطبقة الأولى من لفائف الممبرين البيتوميني باللحام الحراري.</li>
+                  <li>مراعاة نسب الركوب: 10 سم في الاتجاه الأفقي و15 سم في الركوب الرأسي على الوزرات.</li>
+                  <li>فرد الطبقة الثانية من لفائف الممبرين المبحصة مع إزاحة الفواصل لتجنب تطابق خطوط اللحام.</li>
+                  <li>رش طبقة العزل الحراري البولي يوريثان فوم بسماكة 3 سم إلى 5 سم فوق النظام.</li>
+                  <li>دهان طبقة الأكريليك المقاومة للأشعة فوق البنفسجية (UV Protection) بسماكة 1 ملم.</li>
+                  <li>اختبار السطح بالغمر بالماء لمدة 72 ساعة ومراقبة الهيكل الإنشائي.</li>
+                  <li>فرد طبقة الفصل الجيوتكستايل (Geotextile Fabric) لحماية العزل بالكامل.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOS 05: Honey Combing -->
+          <div class="mos-item reveal" id="mos-item-05">
+            <button class="mos-trigger" onclick="toggleMos(this)">
+              <div class="mos-trigger-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+              </div>
+              <div class="mos-trigger-text">
+                <div class="mos-trigger-id">MOS-05 / HONEYCOMBING REPAIR</div>
+                <div class="mos-trigger-title">أعمال معالجة التعشيشات الإنشائية (Concrete Repair & Grouting)</div>
+              </div>
+              <svg class="mos-trigger-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mos-content">
+              <div class="mos-content-inner">
+                
+                <!-- MOS 05 Technical Diagram Box -->
+                <div class="mos-diagram-box">
+                  <div class="mos-diagram-header">
+                    <span class="mos-diagram-tag">3D TECHNICAL SCHEMATIC — CONCRETE REPAIR & GROUTING</span>
+                    <span class="mos-diagram-code">DWG-MOS-05</span>
+                  </div>
+                  <div class="mos-diagram-body" onclick="openImageModal('assets/images/mos_honeycomb_repair.jpg', 'المخطط الهندسي لمعالجة التعشيشات وترميم الخرسانة (MOS-05)')">
+                    <img src="assets/images/mos_honeycomb_repair.jpg" alt="مخطط معالجة التعشيشات" class="mos-diagram-img">
+                    <div class="mos-diagram-overlay">
+                      <div class="mos-diagram-overlay-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        انقر للتكبير والمطالعة الهندسية
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mos-form-grid">
+                  <div class="mos-field">
+                    <div class="mos-field-label">PROJECT NAME</div>
+                    <div class="mos-field-value">اسم المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">DESCRIPTION</div>
+                    <div class="mos-field-value">أعمال معالجة التعشيشات الإنشائية وتأهيل حديد التسليح</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">LOCATION</div>
+                    <div class="mos-field-value">موقع المشروع المعتمد</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">BONDING AGENT</div>
+                    <div class="mos-field-value">دهان بوند لياسة أزرق بوليمري (SBR Latex Bond)</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">SUPERVISOR ROLE</div>
+                    <div class="mos-field-value">مشرف الموقع / مهندس الجودة</div>
+                  </div>
+                  <div class="mos-field">
+                    <div class="mos-field-label">MATERIAL SPEC</div>
+                    <div class="mos-field-value">جراوت إنشائي غير قابل للانكماش عالي الإجهاد</div>
+                  </div>
+                </div>
+
+                <div class="mos-steps-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  آلية تنفيذ الأعمال والخطوات الميدانية
+                </div>
+                <ol class="mos-steps">
+                  <li>تكسير وإزالة مناطق الضعف والخرسانة الهشة حول وداخل منطقة التعشيش حتى الوصول للخرسانة الصلبة.</li>
+                  <li>تنظيف مكان التعشيش تماماً من كافة الأتربة والرواسب والقطع الخرسانية العالقة.</li>
+                  <li>تنظيف وتأهيل حديد التسليح وإزالة الصدأ بواسطة فرشاة الصنفرة السلكية حتى يعود للونه المعدني النظيف.</li>
+                  <li>دهان طبقة بوند لياسة أزرق بوليمري (SBR Latex Bonding Agent) على الخرسانة والحديد لتعزيز الالتصاق الميكانيكي.</li>
+                  <li>تطبيق وضغط طبقة الجراوت الإنشائي غير القابل للانكماش وإغلاق مكان التعشيش بالكامل وتسويته مع سطح الخرسانة.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RESPONSIBILITIES ===== -->
+    <section class="responsibilities" id="responsibilities">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label">GOVERNANCE & RESPONSIBILITIES MATRIX</div>
+          <h2 class="section-title">مصفوفة المسؤوليات والأدوار</h2>
+          <p class="section-desc" style="margin-bottom: 32px;">توزيع الصلاحيات والمهام الإشرافية والتنفيذية لضمان الحوكمة المؤسسية في مشاريع العزل.</p>
+        </div>
+        <div class="resp-table-wrapper reveal">
+          <table class="resp-table">
+            <thead>
+              <tr>
+                <th>الجهة / الإدارة</th>
+                <th>المهام والمسؤوليات الرئيسية</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="resp-entity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    إدارة المشاريع
+                  </div>
+                </td>
+                <td>توقيع العقود، التخطيط العام، حل العوائق الكبرى، متابعة نسب الإنجاز، والتسليم النهائي للعميل.</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="resp-entity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    إدارة المشتريات
+                  </div>
+                </td>
+                <td>التعاقد مع مصانع وموردي المواد المعتمدين، التفاوض على الأسعار، ومتابعة جدول التوريد للموقع.</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="resp-entity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    مشرف الموقع
+                  </div>
+                </td>
+                <td>الرقابة الفنية اليومية، استلام المواد وفحص جودتها بالموقع، رفع التقارير اليومية، الإشراف على اختبار الغمر بالماء، والتمتير النهائي.</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="resp-entity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    الجهة المنفذة (العمالة)
+                  </div>
+                </td>
+                <td>توفير الأيدي العاملة الفنية والمعدات، تجهيز الأسطح، التطبيق الفني حسب الأصول والمواصفات، والحد من هدر المواد.</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="resp-entity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    الإدارة المالية
+                  </div>
+                </td>
+                <td>مراجعة ومطابقة العقود، صرف دفعات الموردين والعمالة، تحصيل مستحقات الشركة من العملاء، وتطبيق لائحة غرامات التأخير أو الهدر.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TIMELINE SCHEDULE ===== -->
+    <section class="timeline-section" id="schedule">
+      <div class="container">
+        <div class="reveal" style="margin-bottom: 40px;">
+          <div class="section-label">STANDARD TIMELINE</div>
+          <h2 class="section-title">الجدول الزمني القياسي لإنجاز المشاريع</h2>
+          <p class="section-desc">(تقدير قياسي لمشروع متوسط بمساحة 500 متر مربع)</p>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="timeline-item reveal">
+            <div class="timeline-day">1-2</div>
+            <div class="timeline-day-label">DAYS / الأيام</div>
+            <div class="timeline-phase">التخطيط والتوريد</div>
+            <div class="timeline-tasks">معاينة، تعاقد مع العميل والعمالة، إصدار طلب شراء المواد وتوريدها للموقع بأمان.</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-day">3</div>
+            <div class="timeline-day-label">DAY / اليوم</div>
+            <div class="timeline-phase">التنفيذ (التجهيز)</div>
+            <div class="timeline-tasks">دخول العمالة للموقع، التنظيف الشامل، معالجة التشققات، وعمل الوزرات المقعرة.</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-day">4-6</div>
+            <div class="timeline-day-label">DAYS / الأيام</div>
+            <div class="timeline-phase">التنفيذ (أعمال العزل)</div>
+            <div class="timeline-tasks">اللياسة وبرايمر الأساس، ورش/فرد طبقات العزل الأساسية بالسماكات المعتمدة.</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-day">7</div>
+            <div class="timeline-day-label">DAY / اليوم</div>
+            <div class="timeline-phase">التنفيذ (الحماية)</div>
+            <div class="timeline-tasks">تطبيق طبقات الحماية السطحية (دهان الأكريليك أو الجيوتكستايل الفاصل).</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-day">8-9</div>
+            <div class="timeline-day-label">DAYS / الأيام</div>
+            <div class="timeline-phase">الاختبار وضبط الجودة</div>
+            <div class="timeline-tasks">تسكير الصفايات، وغمر السطح بالكامل بالماء ومراقبته لمدة 48 إلى 72 ساعة.</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-day">10</div>
+            <div class="timeline-day-label">DAY / اليوم</div>
+            <div class="timeline-phase">التسليم والإغلاق المالي</div>
+            <div class="timeline-tasks">التأكد من نجاح الفحص، تجفيف السطح، تسليم العميل، إصدار شهادة الضمان والتسويات المالية.</div>
+          </div>
+          <div class="timeline-total">
+            <div class="timeline-total-label">إجمالي المدة القياسية الموصى بها: 7 إلى 10 أيام عمل</div>
+            <div class="timeline-total-note">(قابلة للتعديل الهندسي بناءً على مساحة وطبيعة الموقع والظروف الجوية)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <img src="LOGO-01.png" alt="WUH" class="footer-logo">
+            <div class="footer-text">
+              <strong>انطلق بقوة القابضة</strong>
+              Wheels Up Holding — قسم العزل المتخصص
+            </div>
+          </div>
+          <div class="footer-credit">
+            إعداد وتطوير: <strong>عبدالعزيز العكه</strong>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 WHEELS UP HOLDING. ALL RIGHTS RESERVED. — INSULATION DEPT. OPERATIONAL GUIDE v2.0
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ===== IMAGE LIGHTBOX MODAL ===== -->
+  <div class="image-modal" id="imageModal">
+    <div class="image-modal-content">
+      <button class="image-modal-close" onclick="closeImageModal()">&times;</button>
+      <img src="" alt="" class="image-modal-img" id="modalImage">
+      <div class="image-modal-caption" id="modalCaption">
+        <span>3D SCHEMATIC</span>
+        <div id="modalCaptionText"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // === SIDEBAR ACTIVE STATE ===
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveLink() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+
+    // Close mobile menu on link click
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          closeMobileMenu();
+        }
+      });
+    });
+
+    // === MOBILE MENU ===
+    const mobileToggle = document.getElementById('mobileToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = sidebar.classList.contains('open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        sidebar.classList.add('open');
+        sidebarOverlay.classList.add('active');
+        mobileToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    sidebarOverlay.addEventListener('click', closeMobileMenu);
+
+    function closeMobileMenu() {
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('active');
+      mobileToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // === SCROLL REVEAL ===
+    const revealElements = document.querySelectorAll('.reveal, .reveal-right, .phase-card, .mos-item, .timeline-item');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Stagger delay based on index within the same batch
+          const siblings = Array.from(entry.target.parentElement.children).filter(
+            el => el.classList.contains('reveal') || el.classList.contains('reveal-right') ||
+                  el.classList.contains('phase-card') || el.classList.contains('mos-item') ||
+                  el.classList.contains('timeline-item')
+          );
+          const siblingIndex = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, siblingIndex * 100);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // === COUNTER ANIMATION ===
+    const counters = document.querySelectorAll('.stat-number');
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          const suffix = el.dataset.suffix || '';
+          const duration = 1500;
+          const start = performance.now();
+
+          function animate(currentTime) {
+            const elapsed = currentTime - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const current = Math.round(eased * target);
+            el.textContent = current + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObserver.observe(el));
+
+    // === MOS ACCORDION ===
+    function toggleMos(trigger) {
+      const item = trigger.closest('.mos-item');
+      const content = item.querySelector('.mos-content');
+      const isOpen = item.classList.contains('open');
+
+      // Close all other items
+      document.querySelectorAll('.mos-item.open').forEach(openItem => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.mos-content').style.maxHeight = null;
+        }
+      });
+
+      // Toggle current
+      if (isOpen) {
+        item.classList.remove('open');
+        content.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    }
+
+    // === JUMP AND EXPAND MOS FROM HERO HOTSPOTS ===
+    function jumpToMos(mosId) {
+      const targetItem = document.getElementById(mosId);
+      if (!targetItem) return;
+      
+      // Close other open items
+      document.querySelectorAll('.mos-item.open').forEach(openItem => {
+        if (openItem !== targetItem) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.mos-content').style.maxHeight = null;
+        }
+      });
+
+      // Open the targeted MOS item
+      if (!targetItem.classList.contains('open')) {
+        targetItem.classList.add('open');
+        const content = targetItem.querySelector('.mos-content');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+
+      // Smooth scroll to targeted item
+      const yOffset = -70; 
+      const y = targetItem.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    // === IMAGE LIGHTBOX MODAL ===
+    function openImageModal(src, caption) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      const modalCaptionText = document.getElementById('modalCaptionText');
+      modalImg.src = src;
+      modalCaptionText.textContent = caption || '';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('imageModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeImageModal();
+    });
+
+    // === KEYBOARD SUPPORT ===
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeImageModal();
+        closeMobileMenu();
+      }
+    });
+
+    // === HAZARD BAR ANIMATION ===
+    const hazardBars = document.querySelectorAll('.hazard-bar-fill');
+    const hazardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const targetWidth = entry.target.style.width;
+          entry.target.style.width = '0%';
+          setTimeout(() => {
+            entry.target.style.width = targetWidth;
+          }, 300);
+          hazardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    hazardBars.forEach(bar => hazardObserver.observe(bar));
+
+    // Initial call
+    updateActiveLink();
+  </script>
+
+</body>
+</html>
