@@ -1917,6 +1917,606 @@
       .hero-actions { flex-direction: column; }
       .btn { justify-content: center; }
     }
+  
+    /* ===== MOS ACTION BUTTONS & MASTER EXPORT ===== */
+    .mos-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .btn-master-mos {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: var(--deep-navy);
+      color: #fff;
+      border: 1.5px solid var(--safety-orange);
+      font-family: var(--font-primary);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    .btn-master-mos:hover {
+      background: var(--safety-orange);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 107, 0, 0.3);
+    }
+    .btn-master-mos svg { width: 18px; height: 18px; color: var(--safety-orange); transition: color 0.3s ease; }
+    .btn-master-mos:hover svg { color: #fff; }
+
+    .mos-item-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 12px 16px;
+      background: rgba(10, 25, 47, 0.04);
+      border: 1px dashed var(--steel-gray);
+      flex-wrap: wrap;
+    }
+
+    .mos-action-label {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate-blue);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-mos-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-family: var(--font-primary);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-mos-edit {
+      background: var(--deep-navy);
+      color: #fff;
+      border: 1px solid var(--deep-navy);
+    }
+    .btn-mos-edit:hover {
+      background: var(--safety-orange);
+      border-color: var(--safety-orange);
+    }
+
+    .btn-mos-quickprint {
+      background: transparent;
+      color: var(--deep-navy);
+      border: 1px solid var(--steel-gray);
+    }
+    .btn-mos-quickprint:hover {
+      background: var(--surface-container);
+      border-color: var(--slate-blue);
+    }
+
+    /* ===== MOS CUSTOMIZER MODAL ===== */
+    .mos-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 13, 26, 0.85);
+      z-index: 4000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      backdrop-filter: blur(6px);
+      overflow-y: auto;
+    }
+    .mos-modal-overlay.active { display: flex; }
+
+    .mos-modal-dialog {
+      background: var(--surface-white);
+      border: 2px solid var(--safety-orange);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      animation: modalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(30px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .mos-modal-header {
+      background: var(--deep-navy);
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--safety-orange);
+    }
+
+    .mos-modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mos-modal-badge {
+      background: var(--safety-orange);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+    }
+
+    .mos-modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .mos-modal-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .mos-modal-close:hover { color: var(--safety-orange); }
+
+    .mos-modal-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .mos-modal-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--steel-gray);
+      margin-bottom: 20px;
+      gap: 8px;
+    }
+
+    .mos-tab-btn {
+      padding: 10px 18px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-family: var(--font-primary);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .mos-tab-btn:hover { color: var(--deep-navy); }
+    .mos-tab-btn.active {
+      color: var(--safety-orange);
+      border-bottom-color: var(--safety-orange);
+    }
+
+    .mos-tab-content { display: none; }
+    .mos-tab-content.active { display: block; }
+
+    .modal-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group.full-width { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--deep-navy);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--steel-gray);
+      background: var(--surface-off-white);
+      font-family: var(--font-primary);
+      font-size: 13px;
+      color: var(--on-surface);
+      border-radius: 0;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--safety-orange);
+      background: #fff;
+    }
+
+    /* Dynamic Step Rows Editor */
+    .steps-editor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .steps-editor-desc {
+      font-size: 13px;
+      color: var(--on-surface-variant);
+    }
+
+    .btn-add-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--deep-navy);
+      color: #fff;
+      font-family: var(--font-primary);
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-add-step:hover { background: var(--safety-orange); }
+
+    .steps-editor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-left: 4px;
+    }
+
+    .step-edit-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--surface-off-white);
+      padding: 8px 12px;
+      border: 1px solid var(--surface-container);
+    }
+
+    .step-num-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--safety-orange);
+      background: rgba(255, 107, 0, 0.12);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .step-edit-input {
+      flex: 1;
+      border: 1px solid var(--steel-gray);
+      padding: 6px 10px;
+      font-family: var(--font-primary);
+      font-size: 13px;
+      background: #fff;
+      resize: vertical;
+      min-height: 40px;
+    }
+    .step-edit-input:focus { outline: none; border-color: var(--safety-orange); }
+
+    .btn-del-step {
+      background: none;
+      border: none;
+      color: var(--error);
+      cursor: pointer;
+      padding: 6px;
+      font-size: 18px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .btn-del-step:hover { opacity: 1; }
+
+    .mos-modal-footer {
+      background: var(--surface-off-white);
+      padding: 14px 20px;
+      border-top: 1px solid var(--steel-gray);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .btn-modal-cancel {
+      padding: 10px 18px;
+      background: transparent;
+      border: 1px solid var(--outline-variant);
+      color: var(--on-surface-variant);
+      font-family: var(--font-primary);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-modal-cancel:hover { background: var(--surface-container); color: var(--on-surface); }
+
+    .btn-modal-export {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: var(--safety-orange);
+      color: #fff;
+      border: none;
+      font-family: var(--font-primary);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+      transition: all 0.25s ease;
+    }
+    .btn-modal-export:hover {
+      background: var(--safety-orange-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ===== HIDDEN PRINT DOCUMENT TEMPLATE (VISIBLE ONLY DURING WINDOW.PRINT) ===== */
+    #officialMosPrintDoc {
+      display: none;
+    }
+
+    @media print {
+      body.printing-mos > *:not(#officialMosPrintDoc) {
+        display: none !important;
+      }
+      body.printing-mos #officialMosPrintDoc {
+        display: block !important;
+        background: #fff !important;
+        color: #111 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .official-submittal-page {
+        page-break-after: always;
+        break-after: page;
+        padding: 12mm 15mm 15mm 15mm !important;
+        background: #fff !important;
+        box-sizing: border-box !important;
+      }
+      .official-submittal-page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      /* Official Header */
+      .submittal-header {
+        border-bottom: 2.5px solid #0A192F;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .submittal-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .submittal-logo {
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+      }
+      .submittal-company {
+        font-family: var(--font-primary);
+        font-size: 14pt;
+        font-weight: 800;
+        color: #0A192F;
+        line-height: 1.2;
+      }
+      .submittal-company small {
+        display: block;
+        font-size: 8pt;
+        color: #666;
+        font-family: var(--font-inter);
+      }
+
+      .submittal-meta-box {
+        text-align: left;
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        line-height: 1.4;
+      }
+      .submittal-doc-id {
+        font-weight: 800;
+        color: #FF6B00;
+        font-size: 10pt;
+      }
+
+      /* Title Banner */
+      .submittal-banner {
+        background: #0A192F !important;
+        color: #fff !important;
+        padding: 8px 14px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .submittal-banner h1 {
+        font-size: 12pt;
+        font-weight: 800;
+        color: #fff;
+        margin: 0;
+      }
+      .submittal-banner span {
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        color: #FF6B00;
+        font-weight: 700;
+      }
+
+      /* Metadata Table */
+      .submittal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 12px;
+        font-size: 9pt;
+      }
+      .submittal-table td {
+        border: 1px solid #D0D0D0;
+        padding: 5px 8px;
+      }
+      .submittal-table .lbl {
+        background: #F2F4F7 !important;
+        font-weight: 700;
+        width: 22%;
+        color: #0A192F;
+      }
+      .submittal-table .val {
+        font-weight: 600;
+        width: 28%;
+      }
+
+      /* 3D Diagram Box in PDF */
+      .submittal-diagram-box {
+        border: 1.5px solid #0A192F;
+        margin-bottom: 12px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .submittal-diagram-bar {
+        background: #060D1A !important;
+        color: #FF6B00 !important;
+        font-family: var(--font-mono);
+        font-size: 8pt;
+        font-weight: 700;
+        padding: 4px 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .submittal-diagram-img {
+        width: 100%;
+        max-height: 180px;
+        object-fit: contain;
+        background: #fff;
+        display: block;
+      }
+
+      /* Steps Section */
+      .submittal-section-title {
+        font-size: 10pt;
+        font-weight: 800;
+        color: #0A192F;
+        border-bottom: 1.5px solid #FF6B00;
+        padding-bottom: 3px;
+        margin-bottom: 6px;
+      }
+
+      .submittal-steps-list {
+        padding-right: 18px;
+        margin-bottom: 12px;
+        font-size: 8.8pt;
+        line-height: 1.55;
+      }
+      .submittal-steps-list li {
+        margin-bottom: 4px;
+      }
+
+      /* Quality & Safety Box */
+      .submittal-qa-box {
+        background: #FFF9F5 !important;
+        border: 1px solid #FF6B00;
+        padding: 6px 10px;
+        margin-bottom: 12px;
+        font-size: 8.5pt;
+        line-height: 1.4;
+      }
+      .submittal-qa-box strong { color: #FF6B00; }
+
+      /* Approvals & Signatures Box */
+      .submittal-signatures {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1.5px solid #0A192F;
+        margin-top: 10px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .sig-column {
+        border-left: 1px solid #0A192F;
+        padding: 6px 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 85px;
+      }
+      .sig-column:last-child { border-left: none; }
+      .sig-title {
+        font-size: 8pt;
+        font-weight: 800;
+        color: #0A192F;
+        border-bottom: 1px solid #E0E0E0;
+        padding-bottom: 3px;
+        margin-bottom: 4px;
+      }
+      .sig-name {
+        font-size: 8pt;
+        color: #444;
+      }
+      .sig-line {
+        border-top: 1px dashed #999;
+        margin-top: 25px;
+        font-size: 7.5pt;
+        color: #777;
+        padding-top: 2px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* Official Submittal Footer */
+      .submittal-doc-footer {
+        margin-top: 10px;
+        padding-top: 6px;
+        border-top: 1px solid #CCC;
+        display: flex;
+        justify-content: space-between;
+        font-size: 7pt;
+        color: #888;
+        font-family: var(--font-mono);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2342,9 +2942,19 @@
     <section class="mos-section" id="mos">
       <div class="container">
         <div class="mos-header reveal">
-          <div class="section-label">ENGINEERING SPECIFICATIONS & METHOD OF STATEMENT</div>
-          <h2 class="section-title">ملفات آلية تنفيذ الأعمال (MOS) والمخططات الهندسية</h2>
-          <p class="section-desc">خمسة أنظمة عزل ومعالجة متخصصة، موثقة بالمواصفات والخطوات الميدانية والمخططات الهندسية ثلاثية الأبعاد (3D).</p>
+          <div class="mos-header-top">
+            <div>
+              <div class="section-label">ENGINEERING SPECIFICATIONS & METHOD OF STATEMENT</div>
+              <h2 class="section-title">ملفات آلية تنفيذ الأعمال (MOS) والمخططات الهندسية</h2>
+              <p class="section-desc">خمسة أنظمة عزل ومعالجة متخصصة، موثقة بالمواصفات والخطوات الميدانية والمخططات الهندسية ثلاثية الأبعاد (3D).</p>
+            </div>
+            <div>
+              <button class="btn-master-mos" onclick="exportAllMosBooklet()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <span>تصدير كتيب آليات العمل الشامل (Master MOS Booklet PDF)</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="mos-accordion" id="mosAccordion">
@@ -2364,6 +2974,22 @@
             <div class="mos-content">
               <div class="mos-content-inner">
                 
+                                <!-- MOS Action Bar -->
+                <div class="mos-item-actions-bar">
+                  <div class="mos-action-label">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>خيارات التوثيق الهندسي وتصدير الوثيقة:</span>
+                  </div>
+                  <button class="btn-mos-action btn-mos-edit" onclick="openMosCustomizer('MOS-01')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <span>تعديل وتصدير PDF رسمي</span>
+                  </button>
+                  <button class="btn-mos-action btn-mos-quickprint" onclick="quickPrintMos('MOS-01')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    <span>طباعة فورية</span>
+                  </button>
+                </div>
+
                 <!-- MOS 01 Technical Diagram Box -->
                 <div class="mos-diagram-box">
                   <div class="mos-diagram-header">
@@ -2440,6 +3066,22 @@
             <div class="mos-content">
               <div class="mos-content-inner">
                 
+                                <!-- MOS Action Bar -->
+                <div class="mos-item-actions-bar">
+                  <div class="mos-action-label">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>خيارات التوثيق الهندسي وتصدير الوثيقة:</span>
+                  </div>
+                  <button class="btn-mos-action btn-mos-edit" onclick="openMosCustomizer('MOS-02')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <span>تعديل وتصدير PDF رسمي</span>
+                  </button>
+                  <button class="btn-mos-action btn-mos-quickprint" onclick="quickPrintMos('MOS-02')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    <span>طباعة فورية</span>
+                  </button>
+                </div>
+
                 <!-- MOS 02 Technical Diagram Box -->
                 <div class="mos-diagram-box">
                   <div class="mos-diagram-header">
@@ -2517,6 +3159,22 @@
             <div class="mos-content">
               <div class="mos-content-inner">
                 
+                                <!-- MOS Action Bar -->
+                <div class="mos-item-actions-bar">
+                  <div class="mos-action-label">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>خيارات التوثيق الهندسي وتصدير الوثيقة:</span>
+                  </div>
+                  <button class="btn-mos-action btn-mos-edit" onclick="openMosCustomizer('MOS-03')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <span>تعديل وتصدير PDF رسمي</span>
+                  </button>
+                  <button class="btn-mos-action btn-mos-quickprint" onclick="quickPrintMos('MOS-03')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    <span>طباعة فورية</span>
+                  </button>
+                </div>
+
                 <!-- MOS 03 Technical Diagram Box -->
                 <div class="mos-diagram-box">
                   <div class="mos-diagram-header">
@@ -2594,6 +3252,22 @@
             <div class="mos-content">
               <div class="mos-content-inner">
                 
+                                <!-- MOS Action Bar -->
+                <div class="mos-item-actions-bar">
+                  <div class="mos-action-label">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>خيارات التوثيق الهندسي وتصدير الوثيقة:</span>
+                  </div>
+                  <button class="btn-mos-action btn-mos-edit" onclick="openMosCustomizer('MOS-04')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <span>تعديل وتصدير PDF رسمي</span>
+                  </button>
+                  <button class="btn-mos-action btn-mos-quickprint" onclick="quickPrintMos('MOS-04')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    <span>طباعة فورية</span>
+                  </button>
+                </div>
+
                 <!-- MOS 04 Technical Diagram Box -->
                 <div class="mos-diagram-box">
                   <div class="mos-diagram-header">
@@ -2674,6 +3348,22 @@
             <div class="mos-content">
               <div class="mos-content-inner">
                 
+                                <!-- MOS Action Bar -->
+                <div class="mos-item-actions-bar">
+                  <div class="mos-action-label">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>خيارات التوثيق الهندسي وتصدير الوثيقة:</span>
+                  </div>
+                  <button class="btn-mos-action btn-mos-edit" onclick="openMosCustomizer('MOS-05')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <span>تعديل وتصدير PDF رسمي</span>
+                  </button>
+                  <button class="btn-mos-action btn-mos-quickprint" onclick="quickPrintMos('MOS-05')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    <span>طباعة فورية</span>
+                  </button>
+                </div>
+
                 <!-- MOS 05 Technical Diagram Box -->
                 <div class="mos-diagram-box">
                   <div class="mos-diagram-header">
@@ -2879,6 +3569,123 @@
         </div>
       </div>
     </footer>
+
+  
+  <!-- ===== MOS CUSTOMIZER & PDF EXPORT MODAL ===== -->
+  <div class="mos-modal-overlay" id="mosModalOverlay">
+    <div class="mos-modal-dialog">
+      
+      <div class="mos-modal-header">
+        <div class="mos-modal-title-wrap">
+          <span class="mos-modal-badge" id="modalMosBadge">MOS-01</span>
+          <h3 class="mos-modal-title" id="modalMosTitle">تخصيص وتصدير آلية العمل (Method of Statement)</h3>
+        </div>
+        <button class="mos-modal-close" onclick="closeMosModal()">&times;</button>
+      </div>
+
+      <div class="mos-modal-body">
+        <div class="mos-modal-tabs">
+          <button class="mos-tab-btn active" id="tabBtnEdit" onclick="switchModalTab('edit')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            بيانات المشروع والمواصفات
+          </button>
+          <button class="mos-tab-btn" id="tabBtnSteps" onclick="switchModalTab('steps')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            خطوات التنفيذ الميدانية (<span id="modalStepCount">0</span>)
+          </button>
+        </div>
+
+        <!-- Tab 1: Project & Specs Info -->
+        <div class="mos-tab-content active" id="tabContentEdit">
+          <div class="modal-form-grid">
+            
+            <div class="form-group">
+              <label>اسم المشروع (Project Name)</label>
+              <input type="text" id="custProjectName" value="مشروع فيلا سكنية خاصة" placeholder="أدخل اسم المشروع">
+            </div>
+
+            <div class="form-group">
+              <label>اسم العميل / المالك (Client Name)</label>
+              <input type="text" id="custClientName" value="شركة انطلق بقوة القابضة" placeholder="أدخل اسم العميل">
+            </div>
+
+            <div class="form-group">
+              <label>موقع المشروع (Location)</label>
+              <input type="text" id="custLocation" value="الرياض - المملكة العربية السعودية" placeholder="موقع المشروع">
+            </div>
+
+            <div class="form-group">
+              <label>كود الوثيقة والاعتماد (Doc Ref No.)</label>
+              <input type="text" id="custDocRef" value="WUH-MOS-01-REV02" placeholder="كود الوثيقة">
+            </div>
+
+            <div class="form-group">
+              <label>تاريخ الإصدار (Issue Date)</label>
+              <input type="date" id="custDate">
+            </div>
+
+            <div class="form-group">
+              <label>رقم المراجعة (Revision)</label>
+              <input type="text" id="custRevision" value="Rev 02">
+            </div>
+
+            <div class="form-group">
+              <label>اسم مهندس / مشرف الموقع (Site Engineer)</label>
+              <input type="text" id="custEngineer" value="م. مهندس الموقع المشرف">
+            </div>
+
+            <div class="form-group">
+              <label>مدير المشاريع (Projects Director)</label>
+              <input type="text" id="custDirector" value="إدارة المشاريع - شركة انطلق بقوة">
+            </div>
+
+            <div class="form-group full-width">
+              <label>استشاري المشروع / ممثل المالك (Consultant / Client Rep.)</label>
+              <input type="text" id="custConsultant" value="الاستشاري الهندسي المشرف على المشروع">
+            </div>
+
+            <div class="form-group full-width">
+              <label>شروط ومتطلبات اختبار الجودة (QA Testing)</label>
+              <input type="text" id="custQaTest" value="اختبار غمر بالماء لمدة 72 ساعة متواصلة ومراقبة الهيكل الخرساني والأسقف السفلية">
+            </div>
+
+            <div class="form-group full-width">
+              <label>ملاحظات واشتراطات خاصة بالموقع (Field Specific Notes)</label>
+              <textarea id="custNotes" rows="2" placeholder="أدخل أي ملاحظات فنية أو توصيات خاصة بالموقع">يتم الالتزام بكافة اشتراطات السلامة المهنية، والتأكد من جفاف ونظافة السطح الخرساني تماماً قبل البدء بفرد أو رش أي مواد عزل معتمدة.</textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 2: Dynamic Execution Steps -->
+        <div class="mos-tab-content" id="tabContentSteps">
+          <div class="steps-editor-header">
+            <p class="steps-editor-desc">يمكنك تعديل نصوص الخطوات الميدانية أو إضافة وحذف خطوات لتلائم طبيعة المشروع:</p>
+            <button class="btn-add-step" onclick="addNewStepRow()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              إضافة خطوة جديدة
+            </button>
+          </div>
+          <div class="steps-editor-list" id="stepsEditorList">
+            <!-- Dynamic Step Rows -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mos-modal-footer">
+        <button class="btn-modal-cancel" onclick="closeMosModal()">إلغاء</button>
+        <button class="btn-modal-export" onclick="exportCustomizedMosPdf()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>تصدير وطباعة PDF الرسمي بالهوية الرقمية</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== HIDDEN PRINT DOCUMENT CONTAINER FOR OFFICIAL PDF SUBMITTAL ===== -->
+  <div id="officialMosPrintDoc"></div>
 
   </main>
 
@@ -3101,6 +3908,460 @@
     }, { threshold: 0.3 });
 
     hazardBars.forEach(bar => hazardObserver.observe(bar));
+
+    
+    // ==========================================
+    // ===== MOS MASTER DATABASE & PDF ENGINE ===
+    // ==========================================
+    const MOS_DATA = {
+      'MOS-01': {
+        id: 'MOS-01',
+        code: 'WUH-MOS-01',
+        title: 'أعمال عزل الأسطح بالفوم (Polyurethane Foam)',
+        desc: 'أعمال عزل الأسطح فوم بولي يوريثان + حماية أكريليك',
+        dwgCode: 'DWG-MOS-01',
+        dwgImg: 'assets/images/mos_roof_foam.jpg',
+        qaReq: 'اختبار غمر بالماء لمدة 72 ساعة متواصلة مع مراقبة المنسوب والأسقف السفلية',
+        specs: [
+          { label: 'PROJECT TYPE', val: 'عزل أسطح المباني والفلل' },
+          { label: 'MATERIAL 1', val: 'خرسانة رغوية 3 - 10 سم بميول' },
+          { label: 'MATERIAL 2', val: 'فوم بولي يوريثان 3 - 5 سم (كثافة 40-45 كجم/م³)' },
+          { label: 'PROTECTION', val: 'دهان أكريليك حماية UV (1 ملم)' },
+          { label: 'SEPARATION', val: 'طبقة جيوتكستايل غير منسوج' },
+          { label: 'QA DURATION', val: '72 ساعة اختبار غمر بالماء' }
+        ],
+        steps: [
+          'عمل أوتار الميول لصب الخرسانة الرغوية بميول دقيقة على الصفايات ومخارج التصريف.',
+          'صب الخرسانة الرغوية (Lightweight Foam Concrete) بالميول المطلوب وبسماكة تتراوح بين 3 إلى 10 سم.',
+          'معالجة الخرسانة الرغوية عن طريق رشها بالمياه بشكل مستمر لمدة 3 أيام لضمان التصلب ومنع الشروخ.',
+          'رش طبقة العزل الحراري والمائي البولي يوريثان فوم (Polyurethane Spray Foam) بسماكة 3 سم إلى 5 سم.',
+          'دهان طبقة الحماية الأكريليك المقاومة للأشعة فوق البنفسجية (UV-Resistant Acrylic) بسماكة تصل إلى 1 ملم.',
+          'اختبار السطح عن طريق تعبئته بالكامل بالمياه وفحصه لمدة 72 ساعة متواصلة للتأكد من انعدام أي تسريب.',
+          'فرد طبقة الفصل الجيوتكستايل (Geotextile Separator Fabric) لحماية النظام قبل البلاط أو الدفان.'
+        ]
+      },
+      'MOS-02': {
+        id: 'MOS-02',
+        code: 'WUH-MOS-02',
+        title: 'أعمال عزل دورات المياه والمطابخ (Bitumen Membrane)',
+        desc: 'عزل دورات المياه والمطابخ بلفائف الممبرين المزدوجة',
+        dwgCode: 'DWG-MOS-02',
+        dwgImg: 'assets/images/mos_wc_membrane.jpg',
+        qaReq: 'اختبار غمر بالماء لمدة 72 ساعة وفحص النقاط الحساسة والصفايات',
+        specs: [
+          { label: 'APPLICATION', val: 'دورات المياه والمطابخ والمناطق الرطبة' },
+          { label: 'SUBSTRATE PREP', val: 'تلييس ناعم + وزرات مشطوفة مقعرة' },
+          { label: 'PRIMER', val: 'برايمر أساس بيتوميني مطاطي' },
+          { label: 'MEMBRANE', val: 'لفائف بيتومينية SBS مسلحة بالبوليستر 4 ملم' },
+          { label: 'OVERLAP', val: 'ركوب أفقي 10 سم / ركوب رأسي 15 سم على الجدران' },
+          { label: 'QA DURATION', val: '72 ساعة اختبار غمر بالماء' }
+        ],
+        steps: [
+          'تنظيف السطح الخرساني تماماً وإزالة الأتربة والشوائب والنتوءات الخرسانية.',
+          'عمل طبقة تلييس ناعم للأرضيات مع حواف مشطوفة (وزرات مقعرة) لاستقبال نظام العزل المائي وحماية الزوايا.',
+          'دهان طبقة برايمر الأساس البيتوميني (Bitumen Primer) على كامل المسطح وتركه حتى يجف تماماً.',
+          'البدء بفرد وتركيب الطبقة الأولى من لفائف الممبرين باللحام الحراري (Torch-Applied SBS Membrane).',
+          'ضبط الركوب الأفقي في نقاط تلاقي الرولات بمقدار 10 سم، والركوب الرأسي على الجدران بمقدار 15 سم كحد أدنى.',
+          'البدء بفرد الطبقة الثانية من لفائف الممبرين مع إزاحة الفواصل (Staggered Joints) لتجنب تطابق نقاط الركوب.',
+          'اختبار السطح والأرضيات عن طريق تعبئتها بالكامل بالمياه وفحصها لمدة 72 ساعة ومراقبة الأسقف السفلية.',
+          'فرد طبقة الفصل الجيوتكستايل (Geotextile) لحماية لفائف الممبرين أثناء أعمال التمديدات والبلاط.'
+        ]
+      },
+      'MOS-03': {
+        id: 'MOS-03',
+        code: 'WUH-MOS-03',
+        title: 'أعمال عزل الخزانات والمسابح (Cementitious Slurry)',
+        desc: 'أعمال عزل الخزانات الأرضية والمسابح بالعزل الإسمنتي البوليمري',
+        dwgCode: 'DWG-MOS-03',
+        dwgImg: 'assets/images/mos_wt_cement.jpg',
+        qaReq: 'تعبئة الخزان بالكامل ومراقبة منسوب المياه لمدة 72 ساعة',
+        specs: [
+          { label: 'STRUCTURE', val: 'خزانات المياه الخرسانية والمسابح' },
+          { label: 'CORNER GROOVE', val: 'تفريغ 2 سم وسد ببلق هيدروليكي (Water Plug)' },
+          { label: 'COATING', val: 'عزل إسمنتي بوليمري مرن ثنائي المكونات' },
+          { label: 'COATS', val: 'وجهين متعامدين (Cross Coat Application)' },
+          { label: 'HONEYCOMBING', val: 'معالجة بجراوت إنشائي غير قابل للانكماش' },
+          { label: 'SAFETY', val: 'مواد صالحة لمياه الشرب ومطابقة للمواصفات' }
+        ],
+        steps: [
+          'معالجة الخرسانة الداخلية بالصنفرة وإزالة الزوائد والنتوءات لضمان نعومة واستواء السطح.',
+          'تكسير وتفريغ زوايا الخزان الرأسية والأفقية بعمق وعرض 2 سم لفتح مسار شريط الحماية.',
+          'تعبئة الزوايا بمادة البلق الهيدروليكية المانعة للنفاذية (Water Plug Mortar) لإغلاق نقاط الضعف والفواصل الإنشائية.',
+          'معالجة تعشيشات الخرسانة بواسطة مادة الجراوت غير القابلة للانكماش (Non-Shrink Structural Grout).',
+          'غسيل وتنظيف السطح تماماً من الأتربة والأوساخ وبقايا التكسير لضمان قوة الالتصاق.',
+          'تطبيق الوجه الأول من العزل الإسمنتي البوليمري في اتجاه واحد وتركه حتى يجف تماماً.',
+          'تطبيق الوجه الثاني من العزل الإسمنتي في الاتجاه المعاكس (Cross Application) لضمان تغطية المسام بنسبة 100%.',
+          'اختبار الخزان أو المسبح عن طريق تعبئته بالكامل بالمياه ومراقبة منسوب المياه للتأكد من سلامة العزل.'
+        ]
+      },
+      'MOS-04': {
+        id: 'MOS-04',
+        code: 'WUH-MOS-04',
+        title: 'أعمال عزل الأسطح الهجين: فوم + ممبرين (Hybrid Roof System)',
+        desc: 'النظام الهجين المتكامل: فوم بولي يوريثان + لفائف ممبرين مبحصة',
+        dwgCode: 'DWG-MOS-04',
+        dwgImg: 'assets/images/mos_foam_membrane.jpg',
+        qaReq: 'اختبار غمر بالماء لمدة 72 ساعة متواصلة ومراقبة الهيكل الإنشائي',
+        specs: [
+          { label: 'SYSTEM TYPE', val: 'نظام هجين فائق الحماية (فوم + ممبرين)' },
+          { label: 'SLOPE FOAM', val: 'خرسانة رغوية 3-10 سم بميول على الصفايات' },
+          { label: 'PERIMETER', val: 'شريط برايمر 20 سم طولي × 100 سم على الأطراف' },
+          { label: 'MEMBRANE', val: 'طبقتين ممبرين SBS مبحص مع إزاحة الفواصل' },
+          { label: 'PU FOAM', val: 'فوم بولي يوريثان 3-5 سم + طلاء أكريليك UV' },
+          { label: 'PROTECTION', val: 'طبقة جيوتكستايل لحماية النظام بالكامل' }
+        ],
+        steps: [
+          'عمل أوتار الميول لصب الخرسانة الرغوية بميول دقيقة موجهة نحو الصفايات.',
+          'صب الخرسانة الرغوية بالميول الهندسي المطلوب وبسماكة تتراوح بين 3 إلى 10 سم.',
+          'معالجة الخرسانة الرغوية برش المياه لمدة 3 أيام لضمان الترطيب والتصلب التام.',
+          'دهان طبقة برايمر الأساس على أطراف المسطح بمقاس 20 سم طولي و100 سم عرض كشريط ربط معتمد.',
+          'البدء بفرد الطبقة الأولى من لفائف الممبرين البيتوميني باللحام الحراري.',
+          'مراعاة نسب الركوب: 10 سم في الاتجاه الأفقي و15 سم في الركوب الرأسي على الوزرات.',
+          'فرد الطبقة الثانية من لفائف الممبرين المبحصة مع إزاحة الفواصل لتجنب تطابق خطوط اللحام.',
+          'رش طبقة العزل الحراري البولي يوريثان فوم بسماكة 3 سم إلى 5 سم فوق النظام.',
+          'دهان طبقة الأكريليك المقاومة للأشعة فوق البنفسجية (UV Protection) بسماكة 1 ملم.',
+          'اختبار السطح بالغمر بالماء لمدة 72 ساعة ومراقبة الهيكل الإنشائي.',
+          'فرد طبقة الفصل الجيوتكستايل (Geotextile Fabric) لحماية العزل بالكامل.'
+        ]
+      },
+      'MOS-05': {
+        id: 'MOS-05',
+        code: 'WUH-MOS-05',
+        title: 'أعمال معالجة التعشيشات الإنشائية (Concrete Repair & Grouting)',
+        desc: 'أعمال معالجة التعشيشات الإنشائية وتأهيل حديد التسليح',
+        dwgCode: 'DWG-MOS-05',
+        dwgImg: 'assets/images/mos_honeycomb_repair.jpg',
+        qaReq: 'فحص ميكانيكي واختبار الطرق وعدم وجود فراغات أو شروخ بعد التصلب',
+        specs: [
+          { label: 'SCOPE', val: 'معالجة وتدعيم الخرسانة المعششة والأعمدة والجسور' },
+          { label: 'STEEL PREP', val: 'صنفرة حديد التسليح وإزالة الصدأ بفرشاة سلكية' },
+          { label: 'BONDING', val: 'دهان بوند لياسة أزرق بوليمري (SBR Latex)' },
+          { label: 'MORTAR', val: 'جراوت إنشائي غير قابل للانكماش عالي الإجهاد' },
+          { label: 'CURING', val: 'معالجة بالرش بالمياه لمدة 3 أيام متواصلة' },
+          { label: 'STANDARDS', val: 'مطابق للمواصفات القياسية ASTM C1107' }
+        ],
+        steps: [
+          'تكسير وإزالة مناطق الضعف والخرسانة الهشة حول وداخل منطقة التعشيش حتى الوصول للخرسانة الصلبة.',
+          'تنظيف مكان التعشيش تماماً من كافة الأتربة والرواسب والقطع الخرسانية العالقة.',
+          'تنظيف وتأهيل حديد التسليح وإزالة الصدأ بواسطة فرشاة الصنفرة السلكية حتى يعود للونه المعدني النظيف.',
+          'دهان طبقة بوند لياسة أزرق بوليمري (SBR Latex Bonding Agent) على الخرسانة والحديد لتعزيز الالتصاق الميكانيكي.',
+          'تطبيق وضغط طبقة الجراوت الإنشائي غير القابل للانكماش وإغلاق مكان التعشيش بالكامل وتسويته مع سطح الخرسانة.'
+        ]
+      }
+    };
+
+    let activeCustomMosId = 'MOS-01';
+
+    // Open Customizer Modal
+    function openMosCustomizer(mosId) {
+      const data = MOS_DATA[mosId];
+      if (!data) return;
+      activeCustomMosId = mosId;
+
+      document.getElementById('modalMosBadge').textContent = data.id;
+      document.getElementById('modalMosTitle').textContent = data.title;
+      document.getElementById('custDocRef').value = `${data.code}-REV02`;
+
+      // Set today's date if empty
+      if (!document.getElementById('custDate').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('custDate').value = today;
+      }
+
+      document.getElementById('custQaTest').value = data.qaReq;
+
+      // Populate Steps
+      renderStepRows(data.steps);
+
+      switchModalTab('edit');
+      document.getElementById('mosModalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMosModal() {
+      document.getElementById('mosModalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('mosModalOverlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeMosModal();
+    });
+
+    function switchModalTab(tab) {
+      document.querySelectorAll('.mos-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.mos-tab-content').forEach(c => c.classList.remove('active'));
+
+      if (tab === 'edit') {
+        document.getElementById('tabBtnEdit').classList.add('active');
+        document.getElementById('tabContentEdit').classList.add('active');
+      } else {
+        document.getElementById('tabBtnSteps').classList.add('active');
+        document.getElementById('tabContentSteps').classList.add('active');
+      }
+    }
+
+    function renderStepRows(stepsList) {
+      const container = document.getElementById('stepsEditorList');
+      container.innerHTML = '';
+      stepsList.forEach((st, idx) => {
+        const row = document.createElement('div');
+        row.className = 'step-edit-row';
+        row.innerHTML = `
+          <div class="step-num-badge">${String(idx + 1).padStart(2, '0')}</div>
+          <textarea class="step-edit-input" rows="2">${st}</textarea>
+          <button class="btn-del-step" title="حذف الخطوة" onclick="this.closest('.step-edit-row').remove(); updateStepBadges();">&times;</button>
+        `;
+        container.appendChild(row);
+      });
+      document.getElementById('modalStepCount').textContent = stepsList.length;
+    }
+
+    function updateStepBadges() {
+      const rows = document.querySelectorAll('#stepsEditorList .step-edit-row');
+      rows.forEach((r, idx) => {
+        r.querySelector('.step-num-badge').textContent = String(idx + 1).padStart(2, '0');
+      });
+      document.getElementById('modalStepCount').textContent = rows.length;
+    }
+
+    function addNewStepRow() {
+      const container = document.getElementById('stepsEditorList');
+      const idx = container.children.length + 1;
+      const row = document.createElement('div');
+      row.className = 'step-edit-row';
+      row.innerHTML = `
+        <div class="step-num-badge">${String(idx).padStart(2, '0')}</div>
+        <textarea class="step-edit-input" rows="2" placeholder="أدخل تفاصيل الخطوة الفنية الجديدة"></textarea>
+        <button class="btn-del-step" title="حذف الخطوة" onclick="this.closest('.step-edit-row').remove(); updateStepBadges();">&times;</button>
+      `;
+      container.appendChild(row);
+      updateStepBadges();
+      row.querySelector('textarea').focus();
+    }
+
+    function getEditedSteps() {
+      const inputs = document.querySelectorAll('#stepsEditorList .step-edit-input');
+      const steps = [];
+      inputs.forEach(inp => {
+        if (inp.value.trim()) steps.push(inp.value.trim());
+      });
+      return steps;
+    }
+
+    // Build Single Printable Document HTML
+    function buildMosSubmittalHtml(mosData, customValues, pageNum = 1, totalPages = 1) {
+      const steps = customValues.steps || mosData.steps;
+      const stepsHtml = steps.map((s, i) => `<li><strong>خطوة (${String(i+1).padStart(2, '0')}):</strong> ${s}</li>`).join('');
+
+      return `
+        <div class="official-submittal-page">
+          
+          <!-- Header -->
+          <div class="submittal-header">
+            <div class="submittal-brand">
+              <img src="LOGO-01.png" alt="WUH Logo" class="submittal-logo">
+              <div class="submittal-company">
+                انطلق بقوة القابضة
+                <small>Wheels Up Holding — Insulation Engineering Dept.</small>
+              </div>
+            </div>
+            <div class="submittal-meta-box">
+              <div>DOC REF: <span class="submittal-doc-id">${customValues.docRef || mosData.code}</span></div>
+              <div>DATE: <strong>${customValues.date || '2026-08-15'}</strong> | REV: <strong>${customValues.revision || 'Rev 02'}</strong></div>
+              <div>PAGE: <strong>${pageNum} of ${totalPages}</strong></div>
+            </div>
+          </div>
+
+          <!-- Title Banner -->
+          <div class="submittal-banner">
+            <h1>${mosData.title}</h1>
+            <span>METHOD OF STATEMENT (MOS)</span>
+          </div>
+
+          <!-- Metadata Table -->
+          <table class="submittal-table">
+            <tr>
+              <td class="lbl">اسم المشروع (Project):</td>
+              <td class="val">${customValues.projectName || 'مشروع فيلا خاصة'}</td>
+              <td class="lbl">العميل / المالك (Client):</td>
+              <td class="val">${customValues.clientName || 'شركة انطلق بقوة'}</td>
+            </tr>
+            <tr>
+              <td class="lbl">موقع المشروع (Location):</td>
+              <td class="val">${customValues.location || 'المملكة العربية السعودية'}</td>
+              <td class="lbl">مهندس الموقع المشرف:</td>
+              <td class="val">${customValues.engineer || 'م. المشرف الميداني'}</td>
+            </tr>
+          </table>
+
+          <!-- Technical Schematic Diagram -->
+          <div class="submittal-diagram-box">
+            <div class="submittal-diagram-bar">
+              <span>3D TECHNICAL ISOMETRIC SCHEMATIC — WUH ENGINEERING</span>
+              <span>${mosData.dwgCode}</span>
+            </div>
+            <img src="${mosData.dwgImg}" alt="${mosData.title}" class="submittal-diagram-img">
+          </div>
+
+          <!-- Methodology Steps -->
+          <div class="submittal-section-title">آلية تنفيذ الأعمال والخطوات الميدانية المعتمدة (Methodology)</div>
+          <ol class="submittal-steps-list">
+            ${stepsHtml}
+          </ol>
+
+          <!-- Quality & Safety Requirements -->
+          <div class="submittal-qa-box">
+            <strong>معايير الجودة واختبار الفحص (QA/QC Standards):</strong>
+            ${customValues.qaTest || mosData.qaReq}
+            <br>
+            <strong>ملاحظات خاصة بالموقع:</strong> ${customValues.notes || 'يتم التقيد بإجراءات السلامة وفحص الركوب وتجهيز السطح وفق المواصفات المعتمدة.'}
+          </div>
+
+          <!-- 3-Box Official Approvals & Signatures -->
+          <div class="submittal-signatures">
+            <div class="sig-column">
+              <div class="sig-title">إعداد مهندس الموقع (Prepared By)</div>
+              <div class="sig-name">${customValues.engineer || 'م. مهندس الموقع'}</div>
+              <div class="sig-line"><span>التوقيع:</span> <span>التاريخ:</span></div>
+            </div>
+            <div class="sig-column">
+              <div class="sig-title">اعتماد مدير المشاريع (Reviewed By)</div>
+              <div class="sig-name">${customValues.director || 'إدارة المشاريع - انطلق بقوة'}</div>
+              <div class="sig-line"><span>الختم والتوقيع:</span> <span>التاريخ:</span></div>
+            </div>
+            <div class="sig-column">
+              <div class="sig-title">اعتماد الاستشاري / المالك (Approved By)</div>
+              <div class="sig-name">${customValues.consultant || 'استشاري المشروع'}</div>
+              <div class="sig-line"><span>التوقيع:</span> <span>التاريخ:</span></div>
+            </div>
+          </div>
+
+          <!-- Submittal Footer -->
+          <div class="submittal-doc-footer">
+            <span>WHEELS UP HOLDING — INSULATION DEPT. MANUAL v2.0</span>
+            <span>CONFIDENTIAL & PROPRIETARY — ALL RIGHTS RESERVED &copy; 2026</span>
+          </div>
+
+        </div>
+      `;
+    }
+
+    // Export Customized Single MOS PDF
+    function exportCustomizedMosPdf() {
+      const mosData = MOS_DATA[activeCustomMosId];
+      if (!mosData) return;
+
+      const customValues = {
+        projectName: document.getElementById('custProjectName').value,
+        clientName: document.getElementById('custClientName').value,
+        location: document.getElementById('custLocation').value,
+        docRef: document.getElementById('custDocRef').value,
+        date: document.getElementById('custDate').value,
+        revision: document.getElementById('custRevision').value,
+        engineer: document.getElementById('custEngineer').value,
+        director: document.getElementById('custDirector').value,
+        consultant: document.getElementById('custConsultant').value,
+        qaTest: document.getElementById('custQaTest').value,
+        notes: document.getElementById('custNotes').value,
+        steps: getEditedSteps()
+      };
+
+      const printContainer = document.getElementById('officialMosPrintDoc');
+      printContainer.innerHTML = buildMosSubmittalHtml(mosData, customValues, 1, 1);
+
+      closeMosModal();
+
+      document.body.classList.add('printing-mos');
+      const originalTitle = document.title;
+      document.title = `${customValues.docRef} - ${mosData.title} - انطلق بقوة`;
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.body.classList.remove('printing-mos');
+          document.title = originalTitle;
+        }, 1000);
+      }, 300);
+    }
+
+    // Quick Print Single MOS (Default values)
+    function quickPrintMos(mosId) {
+      const mosData = MOS_DATA[mosId];
+      if (!mosData) return;
+
+      const today = new Date().toISOString().split('T')[0];
+      const customValues = {
+        projectName: 'مشروع أعمال العزل المعتمد',
+        clientName: 'شركة انطلق بقوة القابضة',
+        location: 'المملكة العربية السعودية',
+        docRef: `${mosData.code}-2026`,
+        date: today,
+        revision: 'Rev 01',
+        engineer: 'م. مهندس الموقع المنفذ',
+        director: 'إدارة مشاريع العزل - انطلق بقوة',
+        consultant: 'الاستشاري المشرف على المشروع',
+        qaTest: mosData.qaReq,
+        notes: 'يتم تطبيق كافة بنود الأمان والمواصفات الفنية المعتمدة بالدليل.',
+        steps: mosData.steps
+      };
+
+      const printContainer = document.getElementById('officialMosPrintDoc');
+      printContainer.innerHTML = buildMosSubmittalHtml(mosData, customValues, 1, 1);
+
+      document.body.classList.add('printing-mos');
+      const originalTitle = document.title;
+      document.title = `${customValues.docRef} - ${mosData.title}`;
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.body.classList.remove('printing-mos');
+          document.title = originalTitle;
+        }, 1000);
+      }, 300);
+    }
+
+    // Export All-in-One Master MOS Booklet
+    function exportAllMosBooklet() {
+      const today = new Date().toISOString().split('T')[0];
+      const keys = ['MOS-01', 'MOS-02', 'MOS-03', 'MOS-04', 'MOS-05'];
+      const totalPages = keys.length;
+
+      let bookletHtml = '';
+      keys.forEach((k, idx) => {
+        const mosData = MOS_DATA[k];
+        const customValues = {
+          projectName: 'الدليل الإرشادي الشامل لمشاريع العزل (Master Submittal)',
+          clientName: 'شركة انطلق بقوة القابضة (Wheels Up Holding)',
+          location: 'كافة مواقع ومشاريع الشركة',
+          docRef: `${mosData.code}-MASTER`,
+          date: today,
+          revision: 'Rev 02',
+          engineer: 'مهندسو ومسؤولو المواقع',
+          director: 'إدارة مشاريع العزل - انطلق بقوة',
+          consultant: 'الإشراف الهندسي العام',
+          qaTest: mosData.qaReq,
+          notes: 'كتيب معتمد لجميع خطوات وآليات تنفيذ أعمال العزل لشركة انطلق بقوة.',
+          steps: mosData.steps
+        };
+        bookletHtml += buildMosSubmittalHtml(mosData, customValues, idx + 1, totalPages);
+      });
+
+      const printContainer = document.getElementById('officialMosPrintDoc');
+      printContainer.innerHTML = bookletHtml;
+
+      document.body.classList.add('printing-mos');
+      const originalTitle = document.title;
+      document.title = `WUH-MASTER-MOS-BOOKLET-2026 - كتيب آليات العمل الشامل`;
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.body.classList.remove('printing-mos');
+          document.title = originalTitle;
+        }, 1000);
+      }, 300);
+    }
 
     // Initial call
     updateActiveLink();

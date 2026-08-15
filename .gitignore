@@ -12,3 +12,5 @@ scratch/
 # Vercel & Node
 .vercel/
 node_modules/
+
+.vercel
