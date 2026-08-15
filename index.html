@@ -2540,9 +2540,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      backdrop-filter: blur(12px);
-      transition: opacity 0.4s ease, visibility 0.4s ease;
+      padding: 24px 20px;
+      backdrop-filter: blur(16px);
+      transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s ease;
     }
 
     #authGatekeeper.unlocked {
@@ -2552,77 +2552,117 @@
     }
 
     .auth-card {
-      background: rgba(10, 25, 47, 0.92);
-      border: 1.5px solid var(--safety-orange);
+      background: rgba(10, 25, 47, 0.95);
+      border: 1.5px solid rgba(255, 107, 0, 0.8);
       width: 100%;
-      max-width: 440px;
-      padding: 36px 30px;
+      max-width: 420px;
+      padding: 40px 32px 32px;
       text-align: center;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 107, 0, 0.15);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 40px rgba(255, 107, 0, 0.2);
       animation: authCardEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
     }
 
     @keyframes authCardEnter {
-      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      from { opacity: 0; transform: translateY(24px) scale(0.96); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .auth-logo {
-      width: 75px;
-      height: 75px;
-      object-fit: contain;
+    .auth-icon-wrap {
+      width: 68px;
+      height: 68px;
       margin: 0 auto 16px;
-      filter: drop-shadow(0 4px 12px rgba(255, 107, 0, 0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 107, 0, 0.08);
+      border: 1.5px solid rgba(255, 107, 0, 0.4);
+      padding: 10px;
+      box-shadow: 0 0 24px rgba(255, 107, 0, 0.25);
+    }
+
+    .auth-icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(255, 107, 0, 0.4));
+    }
+
+    .auth-company-title {
+      font-family: var(--font-primary);
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+    }
+
+    .auth-company-sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--safety-orange);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     .auth-badge {
-      display: inline-block;
-      background: rgba(255, 107, 0, 0.15);
-      color: var(--safety-orange);
-      border: 1px solid rgba(255, 107, 0, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 10px;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 12px;
       margin-bottom: 12px;
       letter-spacing: 0.05em;
     }
 
+    .auth-badge svg {
+      color: var(--safety-orange);
+      width: 13px;
+      height: 13px;
+    }
+
     .auth-title {
-      font-size: 20px;
+      font-family: var(--font-primary);
+      font-size: 19px;
       font-weight: 800;
       color: #FFFFFF;
       margin-bottom: 6px;
     }
 
     .auth-desc {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 24px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 22px;
     }
 
     .auth-input-group {
       position: relative;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .auth-input {
       width: 100%;
-      padding: 13px 44px 13px 16px;
+      padding: 13px 44px 13px 44px;
       background: #060D1A;
       border: 1.5px solid var(--slate-blue);
       color: #FFFFFF;
       font-family: var(--font-mono);
-      font-size: 16px;
+      font-size: 17px;
       text-align: center;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.25em;
       transition: all 0.25s ease;
       outline: none;
     }
     .auth-input:focus {
       border-color: var(--safety-orange);
-      box-shadow: 0 0 15px rgba(255, 107, 0, 0.25);
+      box-shadow: 0 0 16px rgba(255, 107, 0, 0.3);
       background: #081326;
     }
 
@@ -2633,9 +2673,9 @@
       transform: translateY(-50%);
       background: none;
       border: none;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.55);
       cursor: pointer;
-      padding: 4px;
+      padding: 6px;
       display: flex;
       align-items: center;
       transition: color 0.2s;
@@ -2645,9 +2685,12 @@
     .auth-error-msg {
       display: none;
       color: #FF4D4D;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      background: rgba(255, 77, 77, 0.1);
+      border: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 6px 10px;
       animation: errorShake 0.4s ease;
     }
 
@@ -2664,7 +2707,7 @@
       color: #FFFFFF;
       border: none;
       font-family: var(--font-primary);
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 800;
       cursor: pointer;
       display: flex;
@@ -2677,14 +2720,15 @@
     .auth-submit-btn:hover {
       background: var(--safety-orange-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5);
+      box-shadow: 0 8px 26px rgba(255, 107, 0, 0.55);
     }
 
     .auth-footer-note {
-      margin-top: 20px;
-      font-size: 11px;
+      margin-top: 18px;
+      font-size: 10.5px;
       color: rgba(255, 255, 255, 0.4);
       font-family: var(--font-mono);
+      letter-spacing: 0.05em;
     }
 
     .btn-auth-logout {
@@ -2709,10 +2753,19 @@
   <!-- ===== AUTH GATEKEEPER OVERLAY ===== -->
   <div id="authGatekeeper">
     <div class="auth-card">
-      <img src="LOGO-01.png" alt="WUH Logo" class="auth-logo">
-      <div class="auth-badge">SECURITY ACCESS PORTAL</div>
-      <h2 class="auth-title">بوابة الدخول المعتمدة</h2>
-      <p class="auth-desc">الدليل الإرشادي لقسم العزل — شركة انطلق بقوة</p>
+      <div class="auth-icon-wrap">
+        <img src="icon.png" alt="WUH Emblem" class="auth-icon-img">
+      </div>
+      <div class="auth-company-title">شركة انطلق بقوة القابضة</div>
+      <div class="auth-company-sub">WHEELS UP HOLDING — INSULATION DEPT.</div>
+
+      <div class="auth-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>بوابة الوصول الآمن | RESTRICTED PORTAL</span>
+      </div>
+
+      <h2 class="auth-title">تسجيل دخول الدليل الإرشادي</h2>
+      <p class="auth-desc">يرجى إدخال رمز الوصول للمتابعة وتصفح مواصفات العزل</p>
 
       <form id="authForm" onsubmit="event.preventDefault(); verifyPasscode();">
         <div class="auth-input-group">
@@ -2731,7 +2784,7 @@
         </button>
       </form>
 
-      <div class="auth-footer-note">WHEELS UP HOLDING &copy; 2026 — RESTRICTED ACCESS</div>
+      <div class="auth-footer-note">WHEELS UP HOLDING &copy; 2026 — ALL RIGHTS RESERVED</div>
     </div>
   </div>
 
