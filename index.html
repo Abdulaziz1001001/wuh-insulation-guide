@@ -2530,9 +2530,211 @@
       }
     }
 
+  
+    /* ===== PASSCODE GATEKEEPER STYLES ===== */
+    #authGatekeeper {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #0F2744 0%, #060D1A 100%);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    #authGatekeeper.unlocked {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .auth-card {
+      background: rgba(10, 25, 47, 0.92);
+      border: 1.5px solid var(--safety-orange);
+      width: 100%;
+      max-width: 440px;
+      padding: 36px 30px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 107, 0, 0.15);
+      animation: authCardEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    @keyframes authCardEnter {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .auth-logo {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 4px 12px rgba(255, 107, 0, 0.3));
+    }
+
+    .auth-badge {
+      display: inline-block;
+      background: rgba(255, 107, 0, 0.15);
+      color: var(--safety-orange);
+      border: 1px solid rgba(255, 107, 0, 0.4);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .auth-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .auth-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 24px;
+    }
+
+    .auth-input-group {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 13px 44px 13px 16px;
+      background: #060D1A;
+      border: 1.5px solid var(--slate-blue);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0.15em;
+      transition: all 0.25s ease;
+      outline: none;
+    }
+    .auth-input:focus {
+      border-color: var(--safety-orange);
+      box-shadow: 0 0 15px rgba(255, 107, 0, 0.25);
+      background: #081326;
+    }
+
+    .auth-eye-btn {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .auth-eye-btn:hover { color: var(--safety-orange); }
+
+    .auth-error-msg {
+      display: none;
+      color: #FF4D4D;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      animation: errorShake 0.4s ease;
+    }
+
+    @keyframes errorShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .auth-submit-btn {
+      width: 100%;
+      padding: 13px 20px;
+      background: var(--safety-orange);
+      color: #FFFFFF;
+      border: none;
+      font-family: var(--font-primary);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(255, 107, 0, 0.35);
+      transition: all 0.25s ease;
+    }
+    .auth-submit-btn:hover {
+      background: var(--safety-orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5);
+    }
+
+    .auth-footer-note {
+      margin-top: 20px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      font-family: var(--font-mono);
+    }
+
+    .btn-auth-logout {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: color 0.2s;
+      font-family: var(--font-primary);
+    }
+    .btn-auth-logout:hover { color: var(--safety-orange); }
+
   </style>
 </head>
 <body>
+
+  <!-- ===== AUTH GATEKEEPER OVERLAY ===== -->
+  <div id="authGatekeeper">
+    <div class="auth-card">
+      <img src="LOGO-01.png" alt="WUH Logo" class="auth-logo">
+      <div class="auth-badge">SECURITY ACCESS PORTAL</div>
+      <h2 class="auth-title">بوابة الدخول المعتمدة</h2>
+      <p class="auth-desc">الدليل الإرشادي لقسم العزل — شركة انطلق بقوة</p>
+
+      <form id="authForm" onsubmit="event.preventDefault(); verifyPasscode();">
+        <div class="auth-input-group">
+          <input type="password" id="authPassInput" class="auth-input" placeholder="••••••••" autocomplete="current-password" autofocus required>
+          <button type="button" class="auth-eye-btn" onclick="togglePassVisibility()" title="إظهار / إخفاء الرمز">
+            <svg id="eyeIconOpen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg id="eyeIconClosed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+
+        <div id="authErrorMsg" class="auth-error-msg">رمز الدخول غير صحيح، يرجى المحاولة مرة أخرى</div>
+
+        <button type="submit" class="auth-submit-btn">
+          <span>دخول المنصة</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </form>
+
+      <div class="auth-footer-note">WHEELS UP HOLDING &copy; 2026 — RESTRICTED ACCESS</div>
+    </div>
+  </div>
+
 
   <!-- ===== MOBILE TOGGLE ===== -->
   <button class="mobile-toggle" id="mobileToggle" aria-label="فتح القائمة">
@@ -4230,6 +4432,76 @@
 
       triggerOfficialPrint('WUH-MASTER-MOS-BOOKLET-2026 - كتيب آليات العمل الشامل');
     }
+
+    
+    // ==========================================
+    // ===== PASSCODE GATEKEEPER LOGIC ==========
+    // ==========================================
+    const REQUIRED_PASSCODE = 'wuh13579';
+
+    function checkAuthStatus() {
+      const isAuth = localStorage.getItem('wuh_auth') === 'true' || sessionStorage.getItem('wuh_auth') === 'true';
+      const gate = document.getElementById('authGatekeeper');
+      if (isAuth && gate) {
+        gate.classList.add('unlocked');
+      } else if (gate) {
+        gate.classList.remove('unlocked');
+        setTimeout(() => {
+          const passInput = document.getElementById('authPassInput');
+          if (passInput) passInput.focus();
+        }, 100);
+      }
+    }
+
+    function verifyPasscode() {
+      const input = document.getElementById('authPassInput');
+      const err = document.getElementById('authErrorMsg');
+      const val = (input.value || '').trim();
+
+      if (val === REQUIRED_PASSCODE) {
+        localStorage.setItem('wuh_auth', 'true');
+        sessionStorage.setItem('wuh_auth', 'true');
+        err.style.display = 'none';
+        document.getElementById('authGatekeeper').classList.add('unlocked');
+      } else {
+        err.style.display = 'block';
+        input.classList.add('shake');
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function togglePassVisibility() {
+      const input = document.getElementById('authPassInput');
+      const openIcon = document.getElementById('eyeIconOpen');
+      const closedIcon = document.getElementById('eyeIconClosed');
+      if (input.type === 'password') {
+        input.type = 'text';
+        openIcon.style.display = 'none';
+        closedIcon.style.display = 'inline';
+      } else {
+        input.type = 'password';
+        openIcon.style.display = 'inline';
+        closedIcon.style.display = 'none';
+      }
+    }
+
+    function logoutPasscode() {
+      localStorage.removeItem('wuh_auth');
+      sessionStorage.removeItem('wuh_auth');
+      const gate = document.getElementById('authGatekeeper');
+      if (gate) {
+        gate.classList.remove('unlocked');
+        const input = document.getElementById('authPassInput');
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+      }
+    }
+
+    // Run auth check immediately
+    checkAuthStatus();
 
     // Initial call
     updateActiveLink();
