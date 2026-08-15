@@ -2294,15 +2294,28 @@
     }
 
     @media print {
-      body.printing-mos > *:not(#officialMosPrintDoc) {
+      body.printing-mos {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      body.printing-mos .sidebar,
+      body.printing-mos .mobile-toggle,
+      body.printing-mos .sidebar-overlay,
+      body.printing-mos .main-content,
+      body.printing-mos .image-modal,
+      body.printing-mos .mos-modal-overlay {
         display: none !important;
       }
       body.printing-mos #officialMosPrintDoc {
         display: block !important;
-        background: #fff !important;
-        color: #111 !important;
-        padding: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: #ffffff !important;
+        color: #111111 !important;
+        width: 100% !important;
         margin: 0 !important;
+        padding: 0 !important;
       }
 
       .official-submittal-page {
@@ -3685,7 +3698,7 @@
   </div>
 
   <!-- ===== HIDDEN PRINT DOCUMENT CONTAINER FOR OFFICIAL PDF SUBMITTAL ===== -->
-  <div id="officialMosPrintDoc"></div>
+  
 
   </main>
 
@@ -3700,6 +3713,9 @@
       </div>
     </div>
   </div>
+
+  <!-- ===== HIDDEN PRINT DOCUMENT CONTAINER ===== -->
+  <div id="officialMosPrintDoc"></div>
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
@@ -4246,6 +4262,24 @@
       `;
     }
 
+    // Helper: Trigger Official Print with Reliable Cleanup
+    function triggerOfficialPrint(titleText) {
+      document.body.classList.add('printing-mos');
+      const originalTitle = document.title;
+      if (titleText) document.title = titleText;
+
+      const cleanup = () => {
+        document.body.classList.remove('printing-mos');
+        document.title = originalTitle;
+        window.removeEventListener('afterprint', cleanup);
+      };
+      window.addEventListener('afterprint', cleanup);
+
+      setTimeout(() => {
+        window.print();
+      }, 150);
+    }
+
     // Export Customized Single MOS PDF
     function exportCustomizedMosPdf() {
       const mosData = MOS_DATA[activeCustomMosId];
@@ -4268,20 +4302,9 @@
 
       const printContainer = document.getElementById('officialMosPrintDoc');
       printContainer.innerHTML = buildMosSubmittalHtml(mosData, customValues, 1, 1);
-
       closeMosModal();
 
-      document.body.classList.add('printing-mos');
-      const originalTitle = document.title;
-      document.title = `${customValues.docRef} - ${mosData.title} - انطلق بقوة`;
-
-      setTimeout(() => {
-        window.print();
-        setTimeout(() => {
-          document.body.classList.remove('printing-mos');
-          document.title = originalTitle;
-        }, 1000);
-      }, 300);
+      triggerOfficialPrint(`${customValues.docRef} - ${mosData.title} - انطلق بقوة`);
     }
 
     // Quick Print Single MOS (Default values)
@@ -4308,17 +4331,7 @@
       const printContainer = document.getElementById('officialMosPrintDoc');
       printContainer.innerHTML = buildMosSubmittalHtml(mosData, customValues, 1, 1);
 
-      document.body.classList.add('printing-mos');
-      const originalTitle = document.title;
-      document.title = `${customValues.docRef} - ${mosData.title}`;
-
-      setTimeout(() => {
-        window.print();
-        setTimeout(() => {
-          document.body.classList.remove('printing-mos');
-          document.title = originalTitle;
-        }, 1000);
-      }, 300);
+      triggerOfficialPrint(`${customValues.docRef} - ${mosData.title}`);
     }
 
     // Export All-in-One Master MOS Booklet
@@ -4350,17 +4363,7 @@
       const printContainer = document.getElementById('officialMosPrintDoc');
       printContainer.innerHTML = bookletHtml;
 
-      document.body.classList.add('printing-mos');
-      const originalTitle = document.title;
-      document.title = `WUH-MASTER-MOS-BOOKLET-2026 - كتيب آليات العمل الشامل`;
-
-      setTimeout(() => {
-        window.print();
-        setTimeout(() => {
-          document.body.classList.remove('printing-mos');
-          document.title = originalTitle;
-        }, 1000);
-      }, 300);
+      triggerOfficialPrint('WUH-MASTER-MOS-BOOKLET-2026 - كتيب آليات العمل الشامل');
     }
 
     // Initial call
